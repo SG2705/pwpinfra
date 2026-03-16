@@ -1,0 +1,58 @@
+.Header {
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 2.5rem 4.5rem;
+  width: 100%;
+}
+
+.Header-navWrapper {
+  width: -webkit-fill-available;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.Header-navList {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-inline: auto;
+  gap: 5rem;
+  min-height: 1.875rem;
+}
+
+.Header-navListItem {
+  color: var(--color-gray-1);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.Header-navListItem:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.Header-navListItemIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-block;
+  background-color: var(--color-gray-1);
+  -webkit-mask: url("/assets/icons/cheveron-down.svg") no-repeat center;
+  mask: url("/assets/icons/cheveron-down.svg") no-repeat center;
+  mask-size: contain;
+  transition: 0.4s all ease-in-out;
+}
+
+.Header-navListItem:hover .Header-navListItemIcon {
+  transform: scaleY(-1);
+}
+
+.Header-navListItem-contactUsBtn {
+  background-color: var(--color-green-1);
+  color: var(--color-green-3);
+  padding: 1rem 2rem;
+  border-radius: 3rem;
+  margin-inline-start: 5rem;
+}

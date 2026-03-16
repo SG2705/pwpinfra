@@ -1,0 +1,217 @@
+/* Impact */
+.Impact {
+  width: 100%;
+  padding-inline: 4.5rem;
+  margin-block: 2rem;
+}
+
+.Impact-contentTitle {
+  text-align: center;
+  color: var(--color-green-3);
+}
+
+/* Mission */
+.Mission {
+  width: 100%;
+  display: flex;
+  padding-inline: 4.5rem;
+  align-items: center;
+  margin-block: 15rem 2rem;
+  aspect-ratio: 2 / 1;
+  background-color: var(--color-green-2);
+  position: relative;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.Mission-centerWrapper {
+  transform: translateY(-50%);
+}
+
+.Mission-centerWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Mission-contentWrappers {
+  transform: translateY(-50%);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  gap: 2.5rem;
+  padding-inline: 2rem;
+}
+
+.Mission-contentSubTitle,
+.Mission-contentTitle,
+.Mission-contentDescription {
+  color: var(--color-green-3);
+}
+
+.Mission-contentDescription {
+  margin-top: 1rem;
+}
+
+/* Value */
+.Value {
+  position: relative;
+  padding-inline: 4.5rem;
+  margin-top: 5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 5rem;
+}
+
+.Value-maskWrapper-1 {
+  position: absolute;
+  height: 100%;
+  width: 75%;
+  right: 0;
+  bottom: 0;
+  display: inline-block;
+  background-image: url("../assets/web/about-us-2.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom center;
+  background-size: 100% auto;
+  z-index: 0;
+}
+
+.Value-content {
+  width: 100%;
+  z-index: 1;
+}
+
+.Value-contentTitle {
+  color: var(--color-green-3);
+}
+
+.Value-contentDescription {
+  color: var(--color-green-3);
+  margin-top: 2rem;
+  padding-inline-end: 8rem;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 160%;
+  letter-spacing: 1%;
+}
+
+.Value-contentImage {
+  width: 200%;
+  z-index: 1;
+}
+
+.Value-contentImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Leadership */
+.Leadership {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-block: 10rem;
+  padding-inline: 4.5rem;
+  gap: 2rem;
+}
+
+.Leadership-contentTitle {
+  color: var(--color-green-3);
+}
+
+.Leadership-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 2rem;
+}
+
+/* Member Layout */
+.Leadership-member {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 2rem;
+}
+
+/* Image */
+.Leadership-image {
+  background: var(--color-green-1);
+  border-radius: 2.5rem;
+  overflow: hidden;
+}
+
+.Leadership-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.Leadership-content {
+  width: calc(100% - 15rem);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.Leadership-content h2 {
+  font-weight: 500;
+  font-size: 1.875rem;
+  line-height: 160%;
+  letter-spacing: 0;
+  text-align: center;
+  color: var(--color-green-3);
+}
+
+.Leadership-content h4 {
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 160%;
+  letter-spacing: 0;
+  text-align: center;
+  color: var(--color-blue-3);
+}
+
+.Leadership-socialIcons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.Leadership-content p {
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 160%;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  margin-top: 2rem;
+  color: var(--color-green-3);
+}
+
+.Leadership-content a {
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.75rem;
+  letter-spacing: 0%;
+  text-align: center;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 0%;
+  margin-top: auto;
+}
+
+.Leadership-readMore {
+  font-weight: 600;
+  color: #6b7f6d;
+  text-decoration: underline;
+}

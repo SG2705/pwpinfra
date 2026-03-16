@@ -1,0 +1,164 @@
+/* Expand */
+.Expand {
+  width: 100%;
+  display: flex;
+  padding-inline: 4.5rem;
+  align-items: flex-start;
+  margin-block: 2rem;
+  aspect-ratio: 2 / 1;
+  background-color: var(--color-green-2);
+  position: relative;
+}
+
+.Expand-contentWrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+  margin-inline: 16rem;
+  margin-top: 6rem;
+  z-index: 2;
+}
+
+.Expand-contentTitle {
+  text-align: center;
+  color: var(--color-green-3);
+}
+
+.Expand-redirectBtn {
+  background-color: var(--color-green-1);
+  color: var(--color-white-1);
+  padding: 1rem 2rem;
+  border-radius: 3rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.Expand-redirectBtnIcon {
+  width: 1.125rem;
+  height: 1.125rem;
+  display: inline-block;
+  background-color: var(--color-white-1);
+  -webkit-mask: url("/assets/icons/arrow-forward.svg") no-repeat center;
+  mask: url("/assets/icons/arrow-forward.svg") no-repeat center;
+  mask-size: contain;
+}
+
+/* Mask */
+.Expand-maskWrapper-1 {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 50%;
+  width: 80%;
+  transform: translateX(-50%);
+}
+
+.Expand-maskWrapper-1 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Expand-maskWrapper-2 {
+  position: absolute;
+  height: 15rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: inline-block;
+  background-image: url("/assets/web/gujarat-2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom center;
+  background-size: 100% auto;
+  z-index: 0;
+}
+
+/* Expansion */
+.Expansion {
+  display: flex;
+  padding-inline: 4.5rem;
+  align-items: flex-start;
+  margin-block: 5rem;
+}
+
+.Expansion-wrapper {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  gap: 3rem;
+}
+
+.Expansion-left {
+  width: 100%;
+}
+
+.Expansion-leftText {
+  color: var(--color-green-3);
+}
+
+.Expansion-leftGraphic {
+  aspect-ratio: 1;
+}
+
+.Expansion-leftGraphic img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.Expansion-right {
+  width: 175%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.Expansion-card {
+  padding: 2rem;
+  border-radius: 18px;
+}
+
+.Expansion-cardTitle.micro,
+.Expansion-cardListItem.micro {
+  color: var(--color-green-3);
+}
+
+.Expansion-cardTitle.strategic,
+.Expansion-cardListItem.strategic,
+.Expansion-cardTitle.infrastructure,
+.Expansion-cardListItem.infrastructure {
+  color: var(--color-white-1);
+}
+
+.Expansion-card ul {
+  padding-left: 1rem;
+  margin: 0;
+  list-style: disc;
+  margin-left: 0.25rem;
+}
+
+/* CARD COLORS */
+.Expansion-card li::marker {
+  color: var(--color-white-1);
+}
+
+.Expansion-card-light li::marker {
+  color: var(--color-green-3);
+}
+
+.Expansion-card-light {
+  background: var(--color-green-2);
+}
+
+.Expansion-card-blue {
+  background: var(--color-blue-2);
+}
+
+.Expansion-card-dark {
+  background: var(--color-green-3);
+}

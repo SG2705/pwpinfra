@@ -1,0 +1,151 @@
+/* ===== CSS RESET (Minimal, Performance Friendly) ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  overscroll-behavior: none;
+}
+
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  line-height: 1.6;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--color-white-2);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  max-width: 90rem;
+  margin-inline: auto;
+  height: 100vh;
+}
+
+/* Remove default styles */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+/* Root variables */
+:root {
+  --color-green-1: #a8bea1;
+  --color-green-2: #c7ddc0;
+  --color-green-3: #365b49;
+  --color-green-4: #395b64;
+  --color-green-5: #d3eee1;
+  --color-green-6: #27b973;
+  --color-white-1: #ffffff;
+  --color-white-2: #fff9eb;
+  --color-gray-1: #4f4f4f;
+  --color-gray-2: #323232;
+  --color-gray-3: #3f3d3d;
+  --color-gray-4: #6d6d6d;
+  --color-gray-5: #68727d;
+  --color-gray-6: #eaebf0;
+  --color-yellow-1: #f5b301;
+  --color-blue-1: #0a033c;
+  --color-blue-2: #5697bf;
+  --color-blue-3: #1d2130;
+}
+
+.Typography1 {
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.625rem;
+  letter-spacing: 0.125rem;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.Typography2 {
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  letter-spacing: 0%;
+  margin: 0;
+}
+
+.Typography3 {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.Typography4 {
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.25rem;
+  letter-spacing: 0%;
+}
+
+.Typography5 {
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  letter-spacing: 0%;
+}
+
+.Typography6 {
+  font-weight: 600;
+  font-size: 2.875rem;
+  line-height: 3.75rem;
+  letter-spacing: 0%;
+  vertical-align: middle;
+}
+
+.Typography7 {
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  letter-spacing: 0%;
+  vertical-align: middle;
+}
+
+.Typography8 {
+  font-weight: 700;
+  font-size: 1.375rem;
+  line-height: 1.75rem;
+  letter-spacing: 0%;
+  vertical-align: middle;
+}
+
+.Typography9 {
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 160%;
+  letter-spacing: 0%;
+}
+
+.Typography10 {
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 180%;
+  letter-spacing: 0%;
+}

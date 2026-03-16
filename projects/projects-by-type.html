@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Basic -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta -->
+    <title>PWP Infra - Projects By Type</title>
+    <meta name="title" content="PWP Infra - Projects By Type" />
+    <meta
+      name="description"
+      content="PWP is a strategic infrastructure consulting firm delivering scalable, execution-focused solutions that drive long-term growth and operational excellence."
+    />
+    <meta name="author" content="Sagar Gupta" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Canonical -->
+    <link
+      rel="canonical"
+      href="https://pwpinfra.com/projects/projects-by-type/"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://pwpinfra.com/projects/projects-by-type/"
+    />
+    <meta property="og:title" content="PWP Infra - Projects By Type" />
+    <meta
+      property="og:description"
+      content="PWP is a strategic infrastructure consulting firm delivering scalable, execution-focused solutions that drive long-term growth and operational excellence."
+    />
+    <meta
+      property="og:image"
+      content="/assets/favicon/web-app-manifest-512x512.png"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://pwpinfra.com/projects/projects-by-type/"
+    />
+    <meta property="twitter:title" content="PWP Infra - Projects By Type" />
+    <meta
+      property="twitter:description"
+      content="PWP is a strategic infrastructure consulting firm delivering scalable, execution-focused solutions that drive long-term growth and operational excellence."
+    />
+    <meta
+      property="twitter:image"
+      content="/assets/favicon/web-app-manifest-512x512.png"
+    />
+
+    <!-- Performance: Preconnect (example for Google Fonts or CDN) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="/css/main.css?v=0.0.1" as="style" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/main.css?v=0.0.1" />
+    <link rel="stylesheet" href="/css/header.css?v=0.0.1" />
+    <link rel="stylesheet" href="/css/footer.css?v=0.0.1" />
+    <link rel="stylesheet" href="/css/projects-by-type.css?v=0.0.1" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/assets/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/favicon/apple-touch-icon.png"
+    />
+    <meta
+      name="apple-mobile-web-app-title"
+      content="PWP Infra - Projects By Type"
+    />
+
+    <!-- Manifest (for PWA readiness) -->
+    <link rel="manifest" href="/assets/favicon/site.webmanifest" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <site-header class="Projects-siteHeader"></site-header>
+
+    <!-- Section -->
+    <section class="ProjectsByCat">
+      <div class="ProjectsByCat-tabGroup" id="category-tabs">
+        <a href="?category=bfsi" data-category="bfsi">BFSI</a>
+        <a href="?category=hospitality" data-category="hospitality"
+          >Hospitality</a
+        >
+        <a href="?category=food" data-category="food">Food & Beverage</a>
+        <a href="?category=retail" data-category="retail">Retail</a>
+        <a href="?category=industrial" data-category="industrial">Industrial</a>
+      </div>
+
+      <div class="ProjectsByCat-toggleWrapper">
+        <span class="ProjectsByCat-title">Projects</span>
+        <div class="ProjectsByCat-toggleContainer">
+          <input
+            type="radio"
+            name="project-status"
+            id="project-ongoing"
+            onclick="handleRadio(0)"
+            checked
+          />
+          <input
+            type="radio"
+            name="project-status"
+            id="project-completed"
+            onclick="handleRadio(1)"
+          />
+          <div class="ProjectsByCat-toggleSlider"></div>
+          <label for="project-ongoing" class="ProjectsByCat-toggleOption">
+            ↻ Ongoing
+          </label>
+          <label for="project-completed" class="ProjectsByCat-toggleOption">
+            ✓ Completed
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="ProjectsByCat-cardWrapper"
+      id="project-by-cat-container"
+    ></section>
+
+    <!-- Footer -->
+    <site-footer class="SiteFooter"></site-footer>
+
+    <!-- Script -->
+    <script>
+      // Current categories
+      // bfsi
+      // hospitality
+      // food
+      // retail
+      // industrial
+      const render = async (status = 0, category = "bfsi") => {
+        const projectsContainer = document.getElementById(
+          "project-by-cat-container",
+        );
+        projectsContainer.innerHTML = "";
+
+        const response = await fetch("/constants/projects.json");
+        const data = await response.json();
+        const targetData = data.filter(
+          (p) =>
+            ((status === 1 && p?.isCompleted) ||
+              (status === 0 && !p?.isCompleted)) &&
+            p.category === category,
+        );
+
+        if (!targetData || targetData.length === 0) {
+          projectsContainer.innerHTML =
+            '<p class="ProjectsByCat-noDataText"">No projects found!</p>';
+        }
+
+        targetData.forEach((p) => {
+          const card = document.createElement("div");
+          const title = document.createElement("a");
+          const imageContainer = document.createElement("div");
+          card.classList.add("ProjectsByCat-card");
+          title.classList.add("ProjectsByCat-cardTitle");
+          title.innerText = p.title;
+          title.href = `${p.title}.html`;
+          imageContainer.classList.add("ProjectsByCat-cardImageWrapper");
+          imageContainer.innerHTML = `<img src="/assets//projects/${p.title}/${p.thumbnail}" alt="${p.title}" loading="lazy" />`;
+
+          card.appendChild(title);
+
+          if (status === 1) {
+            const pill = document.createElement("p");
+
+            pill.classList.add("ProjectsByCat-cardPill");
+            pill.innerText = "• Completed";
+            card.appendChild(pill);
+          }
+
+          card.appendChild(imageContainer);
+          projectsContainer.appendChild(card);
+        });
+      };
+
+      // Category
+      const params = new URLSearchParams(window.location.search);
+      const category = params.get("category");
+
+      if (!category) {
+        document
+          .querySelector('#category-tabs a[data-category="bfsi"]')
+          .classList.add("ProjectsByCat-activeTab");
+      }
+
+      const tabs = document.querySelectorAll("#category-tabs a");
+
+      tabs.forEach((tab) => {
+        if (tab.dataset.category === category) {
+          tab.classList.add("ProjectsByCat-activeTab");
+        }
+      });
+
+      // Status
+      const savedStatus = localStorage.getItem("project-status");
+
+      if (savedStatus) {
+        const tag =
+          Number(savedStatus) === 1 ? "project-completed" : "project-ongoing";
+        const radio = document.querySelector(
+          `input[name="project-status"][id="${tag}"]`,
+        );
+
+        console.log("radio", radio, savedStatus, tag);
+
+        if (radio) {
+          radio.checked = true;
+        }
+      }
+
+      const handleRadio = (e) => {
+        localStorage.setItem("project-status", e);
+
+        render(e, category);
+      };
+
+      const initialStatus = Number(savedStatus || 0);
+
+      render(initialStatus, category);
+    </script>
+
+    <!-- Defer JS -->
+    <script type="text/javascript" src="/js/header.js?v=0.0.1" defer></script>
+    <script type="text/javascript" src="/js/footer.js?v=0.0.1" defer></script>
+  </body>
+</html>

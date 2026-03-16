@@ -1,0 +1,44 @@
+[
+  {
+    "title": "HYATT Pune room refurbishment work of Standard, Delux and Luxury Suit Rooms for SQER Projects Pvt. Ltd. - 1",
+    "category": "bfsi",
+    "thumbnail": "thumbnail.png",
+    "images": ["thumbnail.png", "thumbnail.png", "thumbnail.png"],
+    "blocks": [
+      {
+        "title": "Project Name",
+        "description": "HYATT Pune room refurbishment work of Standard, Deluxe and Luxury Suit Rooms for SQER Projects Pvt. Ltd."
+      },
+      {
+        "title": "Scope of work",
+        "description": "Project Management (Scheduling, Monitoring and Control), Procurement Assistance (Vendor Finalization), Getting Bill Certification from Client (HYATT) and receipt of payment."
+      },
+      {
+        "title": "Project Value",
+        "description": "INR 1.5 Crore"
+      }
+    ],
+    "isCompleted": false
+  },
+  {
+    "title": "HYATT Pune room refurbishment work of Standard, Delux and Luxury Suit Rooms for SQER Projects Pvt. Ltd. - 2",
+    "category": "bfsi",
+    "thumbnail": "thumbnail.png",
+    "images": ["thumbnail.png"],
+    "isCompleted": true
+  },
+  {
+    "title": "HYATT Pune room refurbishment work of Standard, Delux and Luxury Suit Rooms for SQER Projects Pvt. Ltd. - 3",
+    "category": "food",
+    "thumbnail": "thumbnail.png",
+    "images": ["thumbnail.png"],
+    "isCompleted": true
+  },
+  {
+    "title": "HYATT Pune room refurbishment work of Standard, Delux and Luxury Suit Rooms for SQER Projects Pvt. Ltd. - 4",
+    "category": "food",
+    "thumbnail": "thumbnail.png",
+    "images": ["thumbnail.png"],
+    "isCompleted": true
+  }
+]
