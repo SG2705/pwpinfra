@@ -1,0 +1,30 @@
+[
+  {
+    "title": "A UX Case Study on Creating a Studious Environment for Students",
+    "postedBy": "Andrew Jonson",
+    "postedOn": "27th January 2021",
+    "thumbnail": "thumbnail.png",
+    "images": ["thumbnail.png", "thumbnail.png", "thumbnail.png"],
+    "blocks": [
+      {
+        "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "description": "Apparently we had reached a great height in the atmosphere, for the sky was a dead black, and the stars had ceased to twinkle. By the same illusion which lifts the horizon of the sea to the level of the spectator on a hillside."
+      }
+    ],
+    "isFeatured": true
+  },
+  {
+    "title": "How one Webflow user grew his single person consultancy from $0-100K in 14 months",
+    "postedBy": "Andrew Jonson",
+    "postedOn": "27th January 2021",
+    "thumbnail": "thumbnail.png",
+    "images": ["thumbnail.png", "thumbnail.png", "thumbnail.png"],
+    "blocks": [
+      {
+        "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "description": "Apparently we had reached a great height in the atmosphere, for the sky was a dead black, and the stars had ceased to twinkle. By the same illusion which lifts the horizon of the sea to the level of the spectator on a hillside."
+      }
+    ],
+    "isFeatured": true
+  }
+]

@@ -1,0 +1,143 @@
+.InsightsFeatured {
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.featured-title {
+  max-width: 55rem;
+  margin: auto;
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 4rem;
+  letter-spacing: 0%;
+  text-align: center;
+  color: var(--color-green-3);
+}
+
+.InsightsFeatured-blogMeta {
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.875rem;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.75rem;
+  letter-spacing: 0%;
+  text-align: center;
+  color: var(--color-gray-2);
+}
+
+.InsightsFeatured-blogImg {
+  margin-top: 2.5rem;
+  border-radius: 0.625rem;
+  margin-inline: 5rem;
+  overflow: hidden;
+}
+
+.InsightsFeatured-blogImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.InsightsFeatured-description {
+  max-width: 40rem;
+  margin: 1.875rem auto;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.625rem;
+  letter-spacing: 0%;
+  text-align: center;
+  color: var(--color-blue-4);
+}
+
+.InsightsFeatured-readMore {
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.75rem;
+  letter-spacing: 0%;
+  text-align: center;
+  color: var(--color-green-1);
+}
+
+.InsightsFeatured-readMore:hover {
+  text-decoration: underline;
+}
+
+/* InsightsBlog */
+.InsightsBlog {
+  padding: 5rem 0;
+}
+
+.InsightsFeatured-headingWrapper {
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 4rem;
+  letter-spacing: 0%;
+  color: var(--color-green-3);
+  margin-bottom: 3.5rem;
+  text-align: center;
+}
+
+.InsightsFeatured-gridContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  padding-inline: 5rem;
+}
+
+.InsightsFeatured-cardImg {
+  width: 100%;
+  border-radius: 0.625rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.InsightsFeatured-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.InsightsFeatured-date {
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.625rem;
+  letter-spacing: 0%;
+  color: var(--color-blue-4);
+}
+
+.InsightsFeatured-card h3 {
+  margin: 0.625rem 0;
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 2.25rem;
+  letter-spacing: 0%;
+  color: var(--color-blue-4);
+}
+
+.InsightsFeatured-card p {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.625rem;
+  letter-spacing: 0%;
+  color: var(--color-blue-4);
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.InsightsFeatured-card a {
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.625rem;
+  letter-spacing: 0%;
+  color: #1c1e53;
+}
+
+.InsightsFeatured-card a:hover {
+  text-decoration: non;
+}

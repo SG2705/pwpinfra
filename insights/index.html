@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Basic -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta -->
+    <title>PWP Infra - Insights</title>
+    <meta name="title" content="PWP Infra - Insights" />
+    <meta
+      name="description"
+      content="PWP is a strategic infrastructure consulting firm delivering scalable, execution-focused solutions that drive long-term growth and operational excellence."
+    />
+    <meta name="author" content="Sagar Gupta" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://pwpinfra.com/insights/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pwpinfra.com/insights/" />
+    <meta property="og:title" content="PWP Infra - Insights" />
+    <meta
+      property="og:description"
+      content="PWP is a strategic infrastructure consulting firm delivering scalable, execution-focused solutions that drive long-term growth and operational excellence."
+    />
+    <meta
+      property="og:image"
+      content="/assets/favicon/web-app-manifest-512x512.png"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://pwpinfra.com/insights/" />
+    <meta property="twitter:title" content="PWP Infra - Insights" />
+    <meta
+      property="twitter:description"
+      content="PWP is a strategic infrastructure consulting firm delivering scalable, execution-focused solutions that drive long-term growth and operational excellence."
+    />
+    <meta
+      property="twitter:image"
+      content="/assets/favicon/web-app-manifest-512x512.png"
+    />
+
+    <!-- Performance: Preconnect (example for Google Fonts or CDN) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="/css/main.css?v=0.0.1" as="style" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/main.css?v=0.0.1" />
+    <link rel="stylesheet" href="/css/header.css?v=0.0.1" />
+    <link rel="stylesheet" href="/css/footer.css?v=0.0.1" />
+    <link rel="stylesheet" href="/css/insights.css?v=0.0.1" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/assets/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="PWP Infra - Insights" />
+
+    <!-- Manifest (for PWA readiness) -->
+    <link rel="manifest" href="/assets/favicon/site.webmanifest" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <site-header></site-header>
+
+    <!-- Section -->
+    <section class="InsightsFeatured" id="featured-blog"></section>
+
+    <!-- Section -->
+    <section class="InsightsBlog">
+      <div class="InsightsFeatured-container">
+        <h2 class="InsightsFeatured-headingWrapper">Our Blog</h2>
+
+        <div class="InsightsFeatured-gridContainer">
+          <div class="InsightsFeatured-card">
+            <div class="InsightsFeatured-cardImg">
+              <img
+                src="/assets/blogs/How one Webflow user grew his single person consultancy from $0-100K in 14 months/thumbnail.png"
+                alt=""
+              />
+            </div>
+            <span class="InsightsFeatured-date">27 Jan 2021</span>
+            <h3>
+              How one Webflow user grew his single person consultancy from
+              $0-100K in 14 months
+            </h3>
+            <p>
+              See how pivoting to Webflow changed one person's sales strategy
+              and allowed him to
+            </p>
+            <a
+              href="/insights/How one Webflow user grew his single person consultancy from $0-100K in 14 months"
+              >Read More →</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <site-footer class="SiteFooter"></site-footer>
+
+    <!-- Scripts -->
+    <script>
+      const renderFeatured = async () => {
+        const featuredContainer = document.getElementById("featured-blog");
+
+        const response = await fetch("/constants/blogs.json");
+        const data = await response.json();
+
+        const featuredBlogs = data?.filter((b) => b.isFeatured);
+
+        if (featuredBlogs?.length === 0) {
+          featuredContainer.style.display = "none";
+
+          return;
+        }
+
+        const featureBlog = featuredBlogs?.[0];
+
+        if (!featureBlog) {
+          featuredContainer.style.display = "none";
+
+          return;
+        }
+
+        // Body content
+        const container = document.createElement("div");
+        const h1 = document.createElement("h1");
+        const blogMeta = document.createElement("div");
+        const postedBy = document.createElement("span");
+        const postedOn = document.createElement("span");
+        const img = document.createElement("div");
+        const description = document.createElement("p");
+        const a = document.createElement("a");
+
+        h1.classList.add("featured-title");
+        h1.innerText = featureBlog.title;
+
+        blogMeta.classList.add("InsightsFeatured-blogMeta");
+        postedBy.innerText = featureBlog.postedBy;
+        postedOn.innerText = `Posted on ${featureBlog.postedOn}`;
+        blogMeta.appendChild(postedBy);
+        blogMeta.appendChild(postedOn);
+
+        img.classList.add("InsightsFeatured-blogImg");
+        img.innerHTML = `<img src="/assets/blogs/${featureBlog.title}/thumbnail.png" alt="Featured Blog" />`;
+
+        console.log("Coming here");
+
+        a.classList.add("InsightsFeatured-readMore");
+        a.href = `/insights/${featureBlog.title}`;
+        a.innerText = "Read More";
+
+        container.appendChild(h1);
+        container.appendChild(blogMeta);
+        container.appendChild(img);
+
+        const currentBlocks = featureBlog?.blocks;
+
+        if (currentBlocks && currentBlocks?.length > 0) {
+          description.classList.add("InsightsFeatured-description");
+          description.innerText = currentBlocks?.[0].description;
+          container.appendChild(description);
+        }
+
+        container.appendChild(a);
+        featuredContainer.appendChild(container);
+      };
+
+      renderFeatured();
+    </script>
+
+    <!-- Defer JS -->
+    <script type="text/javascript" src="/js/header.js?v=0.0.1" defer></script>
+    <script type="text/javascript" src="/js/footer.js?v=0.0.1" defer></script>
+  </body>
+</html>
