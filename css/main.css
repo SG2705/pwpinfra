@@ -61,6 +61,7 @@ p {
   --color-green-6: #27b973;
   --color-white-1: #ffffff;
   --color-white-2: #fff9eb;
+  --color-white-3: #f9f7f2;
   --color-gray-1: #4f4f4f;
   --color-gray-2: #323232;
   --color-gray-3: #3f3d3d;
@@ -148,4 +149,13 @@ p {
   font-size: 1.75rem;
   line-height: 180%;
   letter-spacing: 0%;
+}
+
+.GradientSiteHeader {
+  background: var(--color-green-5);
+  background: linear-gradient(
+    180deg,
+    rgba(211, 238, 225, 1) 20%,
+    rgba(255, 249, 235, 1) 100%
+  );
 }

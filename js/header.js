@@ -34,19 +34,15 @@ class SiteHeader extends HTMLElement {
         <ul class="Header-navList">
           <li class="Header-navListItem Typography1">
             <a href="/services">Services</a>
-            <span class="Header-navListItemIcon"></span>
           </li>
           <li class="Header-navListItem Typography1">
             <a href="/projects">Projects</a>
-            <span class="Header-navListItemIcon"></span>
           </li>
           <li class="Header-navListItem Typography1">
             <a href="/about-us">About Us</a>
-            <span class="Header-navListItemIcon"></span>
           </li>
           <li class="Header-navListItem Typography1">
             <a href="/insights">Insights</a>
-            <span class="Header-navListItemIcon"></span>
           </li>
         </ul>
         <a

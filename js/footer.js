@@ -73,33 +73,16 @@ class SiteFooter extends HTMLElement {
             </div>
           </div>
           <div class="Footer-menu">
-            <div class="Footer-menu--1">
-              <p class="Typography4 Footer-menuLink">Quick Links</p>
-              <a class="Typography5 Footer-menuLink" href="/about-us"
-                >About Us</a
-              >
-              <a class="Typography5 Footer-menuLink" href="/insights"
-                >Insights</a
-              >
-              <a class="Typography5 Footer-menuLink" href="/projects/"
-                >Projects</a
-              >
-              <a class="Typography5 Footer-menuLink" href="/projects/projects-by-type.html?category=bfsi"
-                >Projects By Type</a
-              >
-            </div>
-            <div class="Footer-menu--2">
-              <p class="Typography4 Footer-menuLink">Services</p>
-              <a class="Typography5 Footer-menuLink" href="/about-us"
-                >Micro Market Intelligence</a
-              >
-              <a class="Typography5 Footer-menuLink" href="/insights"
-                >Strategic Location<br />Finalization & liasoning</a
-              >
-              <a class="Typography5 Footer-menuLink" href="/projects"
-                >Infrastructure Execution</a
-              >
-            </div>
+            <p class="Typography4 Footer-menuLink">Quick Links</p>
+            <a class="Typography5 Footer-menuLink" href="/about-us">About Us</a>
+            <a class="Typography5 Footer-menuLink" href="/insights">Insights</a>
+            <a class="Typography5 Footer-menuLink" href="/projects/">Projects</a>
+            <a
+              class="Typography5 Footer-menuLink"
+              href="/projects/projects-by-type/?category=bfsi"
+              >Projects By Type</a
+            >
+            <a class="Typography5 Footer-menuLink" href="/services">Services</a>
           </div>
           <div class="Footer-address">
             <div class="Footer-addressGroup">

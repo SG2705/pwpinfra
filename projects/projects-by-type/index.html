@@ -94,7 +94,7 @@
 
   <body>
     <!-- Header -->
-    <site-header class="Projects-siteHeader"></site-header>
+    <site-header class="GradientSiteHeader"></site-header>
 
     <!-- Section -->
     <section class="ProjectsByCat">
@@ -178,9 +178,9 @@
           card.classList.add("ProjectsByCat-card");
           title.classList.add("ProjectsByCat-cardTitle");
           title.innerText = p.title;
-          title.href = `${p.title}.html`;
+          title.href = `/projects/${p.title}`;
           imageContainer.classList.add("ProjectsByCat-cardImageWrapper");
-          imageContainer.innerHTML = `<img src="/assets//projects/${p.title}/${p.thumbnail}" alt="${p.title}" loading="lazy" />`;
+          imageContainer.innerHTML = `<img src="/assets/projects/${p.title}/${p.thumbnail}" alt="${p.title}" loading="lazy" />`;
 
           card.appendChild(title);
 
