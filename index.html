@@ -103,45 +103,54 @@
     <section class="Insights">
       <div class="Insights-headingWrapper">
         <p class="Typography6 Insights-headingTitle">Insights</p>
-        <a href="#" class="Typography5 Insights-allArticle"
+        <a href="/insights/" class="Typography5 Insights-allArticle"
           >See all articles <span class="Insights-allArticleBtns"></span
         ></a>
       </div>
-      <div class="Insights-cardsHolder">
-        <div class="Insights-card">
-          <img src="/assets/web/insights-1.png" alt="Artificial Intelligence" />
-          <div class="Insights-cardOverlay">
-            <p class="Typography4">
-              Artificial Intelligence accessible to everyone in the youth
-            </p>
-          </div>
-        </div>
-        <div class="Insights-card">
-          <img src="/assets/web/insights-2.png" alt="Cash Flow" />
-          <div class="Insights-cardOverlay">
-            <p class="Typography4">
-              Cash flow analyze the examination of the cash flow system
-            </p>
-          </div>
-        </div>
-        <div class="Insights-card">
-          <img src="/assets/web/insights-3.png" alt="Indian Consumers" />
-          <div class="Insights-cardOverlay">
-            <p class="Typography4">
-              Indian consumers are demonstrating a growing interest.
-            </p>
-          </div>
-        </div>
-        <div class="Insights-card">
-          <img src="/assets/web/insights-4.png" alt="Leaders" />
-          <div class="Insights-cardOverlay">
-            <p class="Typography4">
-              Helping the next generation of leaders for elections
-            </p>
-          </div>
-        </div>
-      </div>
+      <div class="Insights-cardsHolder" id="insights-card-holder"></div>
     </section>
+
+    <script>
+      const renderInsights = async () => {
+        const insightsHolder = document.getElementById("insights-card-holder");
+
+        const response = await fetch("/constants/blogs.json");
+        const insights = await response.json();
+
+        let insightsList = [];
+        const featuredInsights = insights.filter((i) => i?.isFeatured) ?? [];
+        const normalInsights = insights.filter((i) => !i?.isFeatured) ?? [];
+
+        if (featuredInsights?.length > 4) {
+          insightsList = [...featuredInsights];
+        } else {
+          insightsList = [...featuredInsights, ...normalInsights].slice(0, 4);
+        }
+
+        insightsList.forEach((i) => {
+          const card = document.createElement("div");
+          const img = document.createElement("img");
+          const overlay = document.createElement("div");
+          const p = document.createElement("p");
+
+          card.classList.add("Insights-card");
+          img.src = `/assets/blogs/${i.title}/${i.thumbnail}`;
+          img.alt = "";
+
+          overlay.classList.add("Insights-cardOverlay");
+          p.classList.add("Typography4");
+          p.innerText = i.title;
+
+          card.appendChild(img);
+          overlay.appendChild(p);
+          card.appendChild(overlay);
+
+          insightsHolder.appendChild(card);
+        });
+      };
+
+      renderInsights();
+    </script>
 
     <!-- Section -->
     <section class="HomeAboutUs">

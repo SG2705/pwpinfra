@@ -88,33 +88,11 @@
     <section class="InsightsFeatured" id="featured-blog"></section>
 
     <!-- Section -->
-    <section class="InsightsBlog">
+    <section class="InsightsBlog" id="insights-blog">
       <div class="InsightsFeatured-container">
         <h2 class="InsightsFeatured-headingWrapper">Our Blog</h2>
 
-        <div class="InsightsFeatured-gridContainer">
-          <div class="InsightsFeatured-card">
-            <div class="InsightsFeatured-cardImg">
-              <img
-                src="/assets/blogs/How one Webflow user grew his single person consultancy from $0-100K in 14 months/thumbnail.png"
-                alt=""
-              />
-            </div>
-            <span class="InsightsFeatured-date">27 Jan 2021</span>
-            <h3>
-              How one Webflow user grew his single person consultancy from
-              $0-100K in 14 months
-            </h3>
-            <p>
-              See how pivoting to Webflow changed one person's sales strategy
-              and allowed him to
-            </p>
-            <a
-              href="/insights/blog/?b=How one Webflow user grew his single person consultancy from $0-100K in 14 months"
-              >Read More →</a
-            >
-          </div>
-        </div>
+        <div class="InsightsFeatured-gridContainer" id="blogs-container"></div>
       </div>
     </section>
 
@@ -188,6 +166,58 @@
       };
 
       renderFeatured();
+
+      const renderBlogList = async () => {
+        const maincontainer = document.getElementById("insights-blog");
+
+        const response = await fetch("/constants/blogs.json");
+        const blogs = await response.json();
+
+        if (!blogs || blogs.length === 0) {
+          maincontainer.style.display = "none";
+
+          return;
+        }
+
+        const blogsContainer = document.getElementById("blogs-container");
+
+        blogs.forEach((blog) => {
+          const card = document.createElement("div");
+          const img = document.createElement("div");
+          const date = document.createElement("div");
+          const h3 = document.createElement("h3");
+          const link = document.createElement("a");
+
+          card.classList.add("InsightsFeatured-card");
+          img.classList.add("InsightsFeatured-cardImg");
+          img.innerHTML = `<img src="/assets/blogs/${blog.title}/${blog.thumbnail}" alt="" />`;
+
+          date.innerText = blog.postedOn;
+
+          h3.innerText = blog.title;
+
+          card.appendChild(img);
+          card.appendChild(date);
+          card.appendChild(h3);
+
+          const blocks = blog?.blocks;
+
+          if (blocks && blocks?.length > 0) {
+            const p = document.createElement("p");
+            p.innerText = blocks[0].description;
+
+            card.appendChild(p);
+          }
+
+          link.href = `/insights/blog/?b=${blog.title}`;
+          link.innerText = "Read More →";
+
+          card.appendChild(link);
+          blogsContainer.appendChild(card);
+        });
+      };
+
+      renderBlogList();
     </script>
 
     <!-- Defer JS -->

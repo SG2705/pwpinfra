@@ -479,9 +479,13 @@
   margin-inline: 3rem;
 }
 
+.Trust-listContainer a {
+  width: 7.5rem;
+}
+
 .Trust-listContainer img {
   filter: grayscale(100%);
-  transition: filter 0.35 ease;
+  transition: filter 350ms ease;
 }
 
 .Trust-listContainer img:hover {
