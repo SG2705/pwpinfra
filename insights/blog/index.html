@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Basic -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta -->
+    <title>PWP Infra</title>
+    <meta name="title" content="PWP Infra" />
+    <meta
+      name="description"
+      content="PWP is a strategic infrastructure consulting firm delivering scalable, execution-focused solutions that drive long-term growth and operational excellence."
+    />
+    <meta name="author" content="Sagar Gupta" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://pwpinfra.com/insights/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pwpinfra.com/insights/" />
+    <meta property="og:title" content="PWP Infra" />
+    <meta
+      property="og:description"
+      content="PWP is a strategic infrastructure consulting firm delivering scalable, execution-focused solutions that drive long-term growth and operational excellence."
+    />
+    <meta
+      property="og:image"
+      content="/assets/favicon/web-app-manifest-512x512.png"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://pwpinfra.com/insights/" />
+    <meta property="twitter:title" content="PWP Infra" />
+    <meta
+      property="twitter:description"
+      content="PWP is a strategic infrastructure consulting firm delivering scalable, execution-focused solutions that drive long-term growth and operational excellence."
+    />
+    <meta
+      property="twitter:image"
+      content="/assets/favicon/web-app-manifest-512x512.png"
+    />
+
+    <!-- Performance: Preconnect (example for Google Fonts or CDN) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="/css/main.css?v=0.0.1" as="style" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/main.css?v=0.0.1" />
+    <link rel="stylesheet" href="/css/header.css?v=0.0.1" />
+    <link rel="stylesheet" href="/css/footer.css?v=0.0.1" />
+    <link rel="stylesheet" href="/css/singleton-blog.css?v=0.0.1" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/assets/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/favicon/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="PWP Infra" />
+
+    <!-- Manifest (for PWA readiness) -->
+    <link rel="manifest" href="/assets/favicon/site.webmanifest" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <site-header></site-header>
+
+    <!-- Section -->
+    <section class="SingletonBlog" id="singleton-blog">
+      <div class="SingletonBlog-container" id="block-container"></div>
+    </section>
+
+    <!-- Footer -->
+    <site-footer class="SiteFooter"></site-footer>
+
+    <!-- Scripts -->
+    <script>
+      const updateMeta = (name, content, isProperty = false) => {
+        const selector = isProperty
+          ? `meta[property="${name}"]`
+          : `meta[name="${name}"]`;
+
+        let tag = document.querySelector(selector);
+
+        if (!tag) {
+          tag = document.createElement("meta");
+
+          if (isProperty) {
+            tag.setAttribute("property", name);
+          } else {
+            tag.setAttribute("name", name);
+          }
+
+          document.head.appendChild(tag);
+        }
+
+        tag.setAttribute("content", content);
+      };
+
+      const render = async (title) => {
+        // Head content
+        const pageUrl = `https://pwpinfra.com/insights/${encodeURIComponent(title)}`;
+        const fullTitle = `PWP Infra - ${title}`;
+
+        document.title = fullTitle;
+
+        updateMeta("title", fullTitle);
+        updateMeta("og:title", fullTitle, true);
+        updateMeta("og:url", pageUrl, true);
+        updateMeta("twitter:title", fullTitle, true);
+        updateMeta("twitter:url", pageUrl, true);
+
+        let canonical = document.querySelector("link[rel='canonical']");
+
+        if (!canonical) {
+          canonical = document.createElement("link");
+          canonical.setAttribute("rel", "canonical");
+          document.head.appendChild(canonical);
+        }
+
+        canonical.setAttribute("href", pageUrl);
+
+        // Body content
+        const singletonBlog = document.getElementById("singleton-blog");
+        const blockContainer = document.getElementById("block-container");
+        const h1 = document.createElement("h1");
+        const meta = document.createElement("div");
+        const postedBy = document.createElement("span");
+        const postedOn = document.createElement("span");
+        const img = document.createElement("div");
+        const content = document.createElement("div");
+
+        h1.classList.add("SingletonBlog-title");
+
+        const response = await fetch("/constants/blogs.json");
+        const data = await response.json();
+        const targetBlog = data.find((p) => p.title === title);
+
+        if (!targetBlog) {
+          h1.innerText = "No blog found for this page!";
+          blockContainer.appendChild(h1);
+          singletonBlog.appendChild(blockContainer);
+
+          return;
+        }
+
+        h1.innerText = targetBlog.title;
+
+        meta.classList.add("SingletonBlog-meta");
+        postedBy.innerText = targetBlog.postedBy;
+        postedOn.innerText = `Posted on ${targetBlog.postedOn}`;
+        meta.appendChild(postedBy);
+        meta.appendChild(postedOn);
+
+        img.classList.add("SingletonBlog-hero");
+        img.innerHTML = `<img src="/assets/blogs/${targetBlog.title}/${targetBlog.thumbnail}" alt="" />`;
+
+        content.classList.add("SingletonBlog-content");
+
+        const blogBlocks = targetBlog?.blocks;
+
+        if (blogBlocks && blogBlocks?.length > 0) {
+          blogBlocks.forEach((b) => {
+            // Check for title
+            if (b?.title) {
+              const h2 = document.createElement("h2");
+              h2.innerText = b?.title;
+              content.appendChild(h2);
+            }
+
+            // Check for description
+            if (b?.description) {
+              const p = document.createElement("p");
+              p.innerText = b?.description;
+              content.appendChild(p);
+            }
+
+            // Check for image
+            if (b?.image) {
+              const img = document.createElement("div");
+              img.classList.add("SingletonBlog-innerImg");
+              img.innerHTML = `<img src="/assets/blogs/${targetBlog.title}/${b.image}" alt="" />`;
+              content.appendChild(img);
+            }
+          });
+        }
+
+        blockContainer.appendChild(h1);
+        blockContainer.appendChild(meta);
+        blockContainer.appendChild(img);
+        blockContainer.appendChild(content);
+        singletonBlog.appendChild(blockContainer);
+      };
+
+      const params = new URLSearchParams(window.location.search);
+      const title = params.get("b");
+
+      render(title);
+    </script>
+
+    <!-- Defer JS -->
+    <script type="text/javascript" src="/js/header.js?v=0.0.1" defer></script>
+    <script type="text/javascript" src="/js/footer.js?v=0.0.1" defer></script>
+  </body>
+</html>

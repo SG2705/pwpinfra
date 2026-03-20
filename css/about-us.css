@@ -29,12 +29,6 @@
   transform: translateY(-50%);
 }
 
-.Mission-centerWrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .Mission-contentWrappers {
   transform: translateY(-50%);
   display: flex;
@@ -103,12 +97,6 @@
   z-index: 1;
 }
 
-.Value-contentImage img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
 /* Leadership */
 .Leadership {
   display: flex;
@@ -145,13 +133,6 @@
   background: var(--color-green-1);
   border-radius: 2.5rem;
   overflow: hidden;
-}
-
-.Leadership-image img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
 }
 
 .Leadership-content {

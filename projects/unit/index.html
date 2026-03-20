@@ -57,7 +57,7 @@
     <link rel="stylesheet" href="/css/main.css?v=0.0.1" />
     <link rel="stylesheet" href="/css/header.css?v=0.0.1" />
     <link rel="stylesheet" href="/css/footer.css?v=0.0.1" />
-    <link rel="stylesheet" href="/css/singleton.css?v=0.0.1" />
+    <link rel="stylesheet" href="/css/singleton-project.css?v=0.0.1" />
 
     <!-- Favicon -->
     <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon" />
@@ -150,6 +150,13 @@
         const target = data.find((p) => p.title === title);
 
         if (!target) {
+          const nodataTitle = document.createElement("h1");
+
+          nodataTitle.classList.add("SingletonProject-noProject");
+          nodataTitle.innerText = "No project found for this page!";
+          blockContainer.appendChild(nodataTitle);
+          thumbnailContainer.appendChild(blockContainer);
+
           return;
         }
 
@@ -158,6 +165,13 @@
         const images = target.images;
 
         if (!thumbnail) {
+          const nodataTitle = document.createElement("h1");
+
+          nodataTitle.classList.add("SingletonProject-noProject");
+          nodataTitle.innerText = "No project found for this page!";
+          blockContainer.appendChild(nodataTitle);
+          thumbnailContainer.appendChild(blockContainer);
+
           return;
         }
 
@@ -197,9 +211,10 @@
           .join("");
       };
 
-      render(
-        "HYATT Pune room refurbishment work of Standard, Delux and Luxury Suit Rooms for SQER Projects Pvt. Ltd. - 1",
-      );
+      const params = new URLSearchParams(window.location.search);
+      const title = params.get("p");
+
+      render(title);
     </script>
 
     <!-- Defer JS -->

@@ -178,7 +178,7 @@
           card.classList.add("ProjectsByCat-card");
           title.classList.add("ProjectsByCat-cardTitle");
           title.innerText = p.title;
-          title.href = `/projects/${p.title}`;
+          title.href = `/projects/unit/?p=${p.title}`;
           imageContainer.classList.add("ProjectsByCat-cardImageWrapper");
           imageContainer.innerHTML = `<img src="/assets/projects/${p.title}/${p.thumbnail}" alt="${p.title}" loading="lazy" />`;
 

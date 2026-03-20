@@ -110,7 +110,7 @@
               and allowed him to
             </p>
             <a
-              href="/insights/How one Webflow user grew his single person consultancy from $0-100K in 14 months"
+              href="/insights/blog/?b=How one Webflow user grew his single person consultancy from $0-100K in 14 months"
               >Read More →</a
             >
           </div>
@@ -167,10 +167,8 @@
         img.classList.add("InsightsFeatured-blogImg");
         img.innerHTML = `<img src="/assets/blogs/${featureBlog.title}/thumbnail.png" alt="Featured Blog" />`;
 
-        console.log("Coming here");
-
         a.classList.add("InsightsFeatured-readMore");
-        a.href = `/insights/${featureBlog.title}`;
+        a.href = `/insights/blog/?b=${featureBlog.title}`;
         a.innerText = "Read More";
 
         container.appendChild(h1);

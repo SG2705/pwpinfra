@@ -1,0 +1,88 @@
+.SingletonBlog {
+  width: 100%;
+  padding-inline: 6rem;
+  margin-block: 5rem 10rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.SingletonBlog-container {
+  margin: auto;
+  padding: 0 1.25rem;
+}
+
+/* TITLE */
+.SingletonBlog-title {
+  margin-top: 3.75rem;
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 4rem;
+  letter-spacing: 0%;
+  text-align: center;
+  color: var(--color-green-3);
+}
+
+.SingletonBlog-meta {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.75rem;
+  letter-spacing: 0%;
+  color: var(--color-gray-2);
+  text-align: center;
+}
+
+/* HERO IMAGE */
+.SingletonBlog-hero {
+  width: 100%;
+  margin-top: 2.5rem;
+  border-radius: 0.625rem;
+  overflow: hidden;
+}
+
+/* CONTENT */
+.SingletonBlog-content {
+  margin-top: 3rem;
+}
+
+.SingletonBlog-content h2 {
+  margin-bottom: 1rem;
+  margin-top: 2.5rem;
+  font-weight: 600;
+  font-size: 2.5rem;
+  line-height: 3.5rem;
+  letter-spacing: 0%;
+  color: var(--color-green-3);
+}
+
+.SingletonBlog-content p {
+  margin-bottom: 1rem;
+}
+
+.SingletonBlog-content ul {
+  margin: 1.25rem 0 1.25rem 1.25rem;
+  color: var(--color-blue-4);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.75rem;
+  letter-spacing: 0%;
+}
+
+.SingletonBlog-content li {
+  margin-bottom: 0.625rem;
+}
+
+/* INLINE IMAGE */
+.SingletonBlog-innerImg {
+  width: 100%;
+  margin: 2rem 0;
+  border-radius: 0.625rem;
+  overflow: hidden;
+  height: 30rem;
+}
