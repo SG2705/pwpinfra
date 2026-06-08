@@ -33,36 +33,10 @@ class SiteFooter extends HTMLElement {
               />
             </a>
             <p class="Footer-contentInfoText Typography3">
-              PWP is a strategic infrastructure consulting firm delivering
-              scalable, execution-focused solutions that drive long-term growth
-              and operational excellence.
+              We are a Strategic expansion and Turnkey delivery partner helping brands grow confidently into new regions
             </p>
             <div class="Footer-socialInfo">
-              <a class="Footer-socialInfoIcon" href="#" aria-label="Follow us on Facebook">
-                <img
-                  src="/assets/web/meta.svg"
-                  alt="Facebook"
-                  width="20"
-                  height="20"
-                />
-              </a>
-              <a class="Footer-socialInfoIcon" href="#" aria-label="Follow us on Twitter">
-                <img
-                  src="/assets/web/twitter.svg"
-                  alt="Twitter"
-                  width="20"
-                  height="20"
-                />
-              </a>
-              <a class="Footer-socialInfoIcon" href="#" aria-label="Follow us on Instagram">
-                <img
-                  src="/assets/web/instagram.svg"
-                  alt="Instagram"
-                  width="20"
-                  height="20"
-                />
-              </a>
-              <a class="Footer-socialInfoIcon" href="#" aria-label="Follow us on LinkedIn">
+              <a class="Footer-socialInfoIcon" target="_blank" href="https://www.linkedin.com/company/pwp-gujarat/posts/?feedView=all" aria-label="Follow us on LinkedIn">
                 <img
                   src="/assets/web/linkedin.svg"
                   alt="LinkedIn"
@@ -80,7 +54,7 @@ class SiteFooter extends HTMLElement {
             <a
               class="Typography5 Footer-menuLink"
               href="/projects/projects-by-type/?category=bfsi"
-              >Projects By Type</a
+              >Projects by Category</a
             >
             <a class="Typography5 Footer-menuLink" href="/services">Services</a>
           </div>
@@ -90,8 +64,7 @@ class SiteFooter extends HTMLElement {
               <div class="Footer-addressGroupText">
                 <p class="Typography2 Footer-addressGroupTextHeading">Address</p>
                 <p class="Typography5 Footer-addressGroupTextContent">
-                  Travel Food Services Pvt. Ltd., Shiv Sagar Estate, Block 1-A,
-                  1st Floor, Worli Point, Mumbai-400018
+                  J-1004, Shilp Ananta, Stanza Road, Oppo. Club O7, Shela, Ahmedabad, Gujarat - 380058
                 </p>
               </div>
             </div>
@@ -100,7 +73,7 @@ class SiteFooter extends HTMLElement {
               <div class="Footer-addressGroupText">
                 <p class="Typography2 Footer-addressGroupTextHeading">Contact</p>
                 <p class="Typography5 Footer-addressGroupTextContent">
-                  +91 92651 56306
+                  +91 92651 56306, +91 70163 50982
                 </p>
               </div>
             </div>
@@ -108,11 +81,10 @@ class SiteFooter extends HTMLElement {
         </div>
         <div class="Footer-extrasWrapper">
           <p class="Typography2 Footer-copyrightText">
-            Copyright © <span id="year"></span>- Projects With Precision Solutions
+            Copyright © <span id="year"></span> - Projects With Precision
           </p>
           <div class="Footer-policyWrapper">
-            <a class="Typography2 Footer-policy" href="#">Privacy Policy</a>
-            <a class="Typography2 Footer-policy" href="#">Terms of Use</a>
+            <a class="Typography2 Footer-policy" target="_blank" href="https://www.linkedin.com/in/sagar-gupta27/">Sagar Gupta</a>
           </div>
         </div>
       </footer>

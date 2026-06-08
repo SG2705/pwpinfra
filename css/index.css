@@ -171,12 +171,10 @@
 .HomeAboutUs-contentSubTitle,
 .HomeAboutUs-contentTitle {
   color: var(--color-green-3);
-  text-align: justify;
 }
 
 .HomeAboutUs-contentDescription {
   color: var(--color-gray-2);
-  text-align: justify;
 }
 
 .HomeAboutUs-redirectBtn {
@@ -233,12 +231,10 @@
 .HomeWhy-contentSubTitle,
 .HomeWhy-contentTitle {
   color: var(--color-green-3);
-  text-align: justify;
 }
 
 .HomeWhy-contentDescription {
   color: var(--color-gray-2);
-  text-align: justify;
 }
 
 .HomeWhy-redirectBtn {
@@ -588,7 +584,6 @@
 }
 
 .ClientSpeaks-cardDescription {
-  text-align: justify;
   color: var(--color-gray-2);
 }
 

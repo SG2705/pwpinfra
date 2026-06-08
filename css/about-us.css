@@ -38,6 +38,10 @@
   padding-inline: 2rem;
 }
 
+.Mission-contentWrappers > * {
+  width: 100%;
+}
+
 .Mission-contentSubTitle,
 .Mission-contentTitle,
 .Mission-contentDescription {

@@ -1,49 +1,102 @@
 // Trust
 const TRUSTS = [
   {
-    href: "https://www.davisulmer.com/",
-    imageSrc: "https://media.apigroupinc.com/logos/dusco.svg?align=c",
-    imageAlt: "Davis-Ulmer logo",
+    href: "https://www.hyatt.com/",
+    imageSrc: "https://1000logos.net/wp-content/uploads/2019/11/Hyatt-Logo.png",
+    imageAlt: "Hyatt Regency",
   },
   {
-    href: "https://www.beachlakesprinkler.com/",
-    imageSrc: "https://media.apigroupinc.com/logos/blsc.svg?align=c",
-    imageAlt: "Beach Lake Sprinkler logo",
+    href: "https://www.welcomheritagehotels.in/",
+    imageSrc:
+      "https://www.manimansion.com/wp-content/uploads/2024/01/Hotel-MM-Logo-288x100-1.jpg",
+    imageAlt: "Welcome Heritage",
   },
   {
-    href: "https://ellisfire.com/",
-    imageSrc: "https://media.apigroupinc.com/logos/ellis.svg?align=c",
-    imageAlt: "Ellis Fire logo",
+    href: "https://coffeeshopcompany.co.in/",
+    imageSrc: "/assets/web/trust-2.png",
+    imageAlt: "Coffeeshop Company",
   },
   {
-    href: "https://www.islandfirespk.com/",
-    imageSrc: "https://media.apigroupinc.com/logos/reliance.svg?align=c",
-    imageAlt: "Island Fire logo",
+    href: "https://ticketing.theconnplex.com/",
+    imageSrc: "https://ticketing.theconnplex.com/assets/logoNew-77XN372e.png",
+    imageAlt: "Connplex Cinemas",
   },
   {
-    href: "https://www.reliancefireprotection.com/",
-    imageSrc: "https://media.apigroupinc.com/logos/reliance.svg?align=c",
-    imageAlt: "Reliance logo",
+    href: "https://www.bluewingconstruction.com/",
+    imageSrc:
+      "https://www.bluewingconstruction.com/wp-content/uploads/2024/02/BWDCPL-logo_Website.png",
+    imageAlt: "Blue Wing Construction",
+  },
+
+  {
+    href: "https://www.baselineworld.com/",
+    imageSrc:
+      "https://www.baselineworld.com/wp-content/uploads/2024/12/logo.png",
+    imageAlt: "BaseLine Project Management Services",
   },
   {
-    href: "https://www.richfire.com/",
-    imageSrc: "https://media.apigroupinc.com/logos/richfire.svg?align=c",
-    imageAlt: "W&M Sprinkler logo",
+    href: "https://www.hitechprojects.co.in/",
+    imageSrc:
+      "http://hitechprojects.co.in/static/media/hitech_logo.441af66c973ea5b6921a.png",
+    imageAlt: "HiTech Projects",
   },
   {
-    href: "https://www.beachlakesprinkler.com/",
-    imageSrc: "https://media.apigroupinc.com/logos/blsc.svg?align=c",
-    imageAlt: "Beach Lake Sprinkler logo",
+    href: "https://www.lntmhipower.com/",
+    imageSrc:
+      "https://2025prodstorageaccount-eqdyc8g8hpccdfez.a02.azurefd.net/ltprod/media/0m1f223j/meta-mhi-boiler.webp",
+    imageAlt: "L&T MHI Power Boilers",
   },
   {
-    href: "https://ellisfire.com/",
-    imageSrc: "https://media.apigroupinc.com/logos/ellis.svg?align=c",
-    imageAlt: "Ellis Fire logo",
+    href: "  https://www.gomaec.in/",
+    imageSrc: "https://www.gomaec.in/img/index/logo.png",
+    imageAlt: "Gomaec Engineering",
   },
   {
-    href: "https://www.islandfirespk.com/",
-    imageSrc: "https://media.apigroupinc.com/logos/reliance.svg?align=c",
-    imageAlt: "Island Fire logo",
+    href: "https://asopalav.in/",
+    imageSrc:
+      "https://asopalav.in/cdn/shop/files/Asopalav-logo-leaf1_300x.png?v=1748939234",
+    imageAlt: "Asopalav",
+  },
+  {
+    href: "https://www.miabytanishq.com/",
+    imageSrc:
+      "https://www.miabytanishq.com/on/demandware.static/-/Sites-Mia-Library/default/dw4d1da9aa/images/logo/mia-logo-1000x1000.svg",
+    imageAlt: "Mia by tanishq",
+  },
+  {
+    href: "https://goearthorganic.com/",
+    imageSrc:
+      "https://goearthorganic.com/cdn/shop/files/Asset_1_1.png?v=1735807336&width=180",
+    imageAlt: "Go Earth Organic",
+  },
+  {
+    href: "https://airport-plaza.ahmedabadhotels.net/en/",
+    imageSrc: "/assets/web/trust-1.png",
+    imageAlt: "Hotel Airport Plaza",
+  },
+  {
+    href: "https://anandrathi.com/",
+    imageSrc:
+      "https://anandrathi.com/_next/static/media/footer-logo.acabddf5.svg",
+    imageAlt: "Anand Rathi",
+  },
+  {
+    href: " https://www.subsidymitra.com/",
+    imageSrc:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4tInBN6yyqN9-tbAC6-V3DFOdmujGa0b2EQ&s",
+    imageAlt: "Subsidy Mitra",
+  },
+  {
+    href: "https://www.instagram.com/studiomaroon_/?hl=en",
+    imageSrc:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr8GpWijxulRgpenpW7gr9egib1giE5YstbQ&s",
+    imageAlt: "Studio Maroon",
+  },
+  {
+    href: "https://www.viraasatarchitects.in/",
+    imageSrc:
+      "http://static.wixstatic.com/media/7a6215_e161aa6cece741f0808cb6578a055e76~mv2.png/v1/fill/w_566,h_160,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Viraasat%20Architects-Color%20copy.png",
+    imageAlt: "Viraasaat Architects",
   },
 ];
 
