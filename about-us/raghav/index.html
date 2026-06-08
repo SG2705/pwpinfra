@@ -49,9 +49,8 @@
       content="/assets/favicon/web-app-manifest-512x512.png"
     />
 
-    <!-- Performance: Preconnect (example for Google Fonts or CDN) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Performance: Preconnect -->
+    <!-- Add preconnect links here when external fonts/CDNs are used -->
 
     <!-- Preload critical CSS -->
     <link rel="preload" href="/css/main.css?v=0.0.1" as="style" />
@@ -61,6 +60,7 @@
     <link rel="stylesheet" href="/css/header.css?v=0.0.1" />
     <link rel="stylesheet" href="/css/footer.css?v=0.0.1" />
     <link rel="stylesheet" href="/css/profile.css?v=0.0.1" />
+    <link rel="stylesheet" href="/css/responsive.css?v=0.0.1" />
 
     <!-- Favicon -->
     <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon" />
@@ -91,24 +91,32 @@
     <site-header></site-header>
 
     <!-- Section -->
-    <section class="Profile">
+    <section class="Profile" id="main-content">
       <div class="Profile-wrapper">
         <div class="Profile-content">
           <h1>Raghav Tandon</h1>
           <h4>Designation</h4>
           <div class="Profile-socialIcons">
-            <a class="Footer-socialInfoIcon" href="#">
+            <a
+              class="Footer-socialInfoIcon"
+              href="#"
+              aria-label="Raghav Tandon on Instagram"
+            >
               <img
                 src="/assets/web/instagram.svg"
-                alt="instagram"
+                alt="Instagram"
                 width="32"
                 height="32"
               />
             </a>
-            <a class="Footer-socialInfoIcon" href="#">
+            <a
+              class="Footer-socialInfoIcon"
+              href="#"
+              aria-label="Raghav Tandon on LinkedIn"
+            >
               <img
                 src="/assets/web/linkedin.svg"
-                alt="linkedin"
+                alt="LinkedIn"
                 width="32"
                 height="32"
               />

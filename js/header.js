@@ -21,9 +21,10 @@ class SiteHeader extends HTMLElement {
     const theme = this.getAttribute("theme") || "light";
 
     this.innerHTML = `
-     <header class="Header">
-      <nav class="Header-navWrapper">
-        <a href="/">
+     <a class="Header-skipToContent" href="#main-content">Skip to content</a>
+     <header class="Header" role="banner">
+      <nav class="Header-navWrapper" aria-label="Main navigation">
+        <a href="/" aria-label="${brand} - Home">
           <img
             src="${logo}"
             alt="${brand}"

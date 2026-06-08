@@ -46,9 +46,8 @@
       content="/assets/favicon/web-app-manifest-512x512.png"
     />
 
-    <!-- Performance: Preconnect (example for Google Fonts or CDN) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Performance: Preconnect -->
+    <!-- Add preconnect links here when external fonts/CDNs are used -->
 
     <!-- Preload critical CSS -->
     <link rel="preload" href="/css/main.css?v=0.0.1" as="style" />
@@ -58,6 +57,7 @@
     <link rel="stylesheet" href="/css/header.css?v=0.0.1" />
     <link rel="stylesheet" href="/css/footer.css?v=0.0.1" />
     <link rel="stylesheet" href="/css/singleton-project.css?v=0.0.1" />
+    <link rel="stylesheet" href="/css/responsive.css?v=0.0.1" />
 
     <!-- Favicon -->
     <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon" />
@@ -85,7 +85,7 @@
     <site-header></site-header>
 
     <!-- Section -->
-    <section class="SingletonProject">
+    <section class="SingletonProject" id="main-content">
       <div class="SingletonProject-imageWrapper" id="thumbnail-container"></div>
       <div class="SingletonProject-detailsWrapper" id="blocks"></div>
       <div class="SingletonProject-extraImageWrapper" id="gallery"></div>
@@ -95,30 +95,23 @@
     <site-footer class="SiteFooter"></site-footer>
 
     <!-- Scripts -->
+    <script type="text/javascript" src="/js/utils.js?v=0.0.1"></script>
     <script>
-      const updateMeta = (name, content, isProperty = false) => {
-        const selector = isProperty
-          ? `meta[property="${name}"]`
-          : `meta[name="${name}"]`;
+      const render = async (title) => {
+        const thumbnailContainer = document.getElementById(
+          "thumbnail-container",
+        );
+        const blockContainer = document.getElementById("blocks");
+        const gallery = document.getElementById("gallery");
 
-        let tag = document.querySelector(selector);
-
-        if (!tag) {
-          tag = document.createElement("meta");
-
-          if (isProperty) {
-            tag.setAttribute("property", name);
-          } else {
-            tag.setAttribute("name", name);
-          }
-
-          document.head.appendChild(tag);
+        if (!title) {
+          const nodataTitle = document.createElement("h1");
+          nodataTitle.classList.add("SingletonProject-noProject");
+          nodataTitle.innerText = "No project found for this page!";
+          blockContainer.appendChild(nodataTitle);
+          return;
         }
 
-        tag.setAttribute("content", content);
-      };
-
-      const render = async (title) => {
         // Head content
         const pageUrl = `https://pwpinfra.com/projects/${encodeURIComponent(title)}`;
         const fullTitle = `PWP Infra - ${title}`;
@@ -140,13 +133,16 @@
         canonical.setAttribute("href", pageUrl);
 
         // Body content
-        const thumbnailContainer = document.getElementById(
-          "thumbnail-container",
-        );
-        const blockContainer = document.getElementById("blocks");
-        const gallery = document.getElementById("gallery");
-        const response = await fetch("/constants/projects.json");
-        const data = await response.json();
+        const data = await fetchJSON("/constants/projects.json");
+
+        if (!data) {
+          const nodataTitle = document.createElement("h1");
+          nodataTitle.classList.add("SingletonProject-noProject");
+          nodataTitle.innerText = "Failed to load project data.";
+          blockContainer.appendChild(nodataTitle);
+          return;
+        }
+
         const target = data.find((p) => p.title === title);
 
         if (!target) {
@@ -180,7 +176,7 @@
         image.alt = title;
         thumbnailContainer.appendChild(image);
 
-        if (!blocks || images.length === 0) {
+        if (!blocks || blocks.length === 0) {
           return;
         }
 
@@ -205,7 +201,7 @@
         gallery.innerHTML = images
           .map((img) => {
             return `
-                    <img src="/assets/projects/${title}/${img}" alt="" loading="lazy" />
+                    <img src="/assets/projects/${title}/${img}" alt="${title}" loading="lazy" />
                   `;
           })
           .join("");

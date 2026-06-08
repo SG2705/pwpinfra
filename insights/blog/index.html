@@ -46,9 +46,8 @@
       content="/assets/favicon/web-app-manifest-512x512.png"
     />
 
-    <!-- Performance: Preconnect (example for Google Fonts or CDN) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Performance: Preconnect -->
+    <!-- Add preconnect links here when external fonts/CDNs are used -->
 
     <!-- Preload critical CSS -->
     <link rel="preload" href="/css/main.css?v=0.0.1" as="style" />
@@ -58,6 +57,7 @@
     <link rel="stylesheet" href="/css/header.css?v=0.0.1" />
     <link rel="stylesheet" href="/css/footer.css?v=0.0.1" />
     <link rel="stylesheet" href="/css/singleton-blog.css?v=0.0.1" />
+    <link rel="stylesheet" href="/css/responsive.css?v=0.0.1" />
 
     <!-- Favicon -->
     <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon" />
@@ -85,7 +85,7 @@
     <site-header></site-header>
 
     <!-- Section -->
-    <section class="SingletonBlog" id="singleton-blog">
+    <section class="SingletonBlog" id="main-content">
       <div class="SingletonBlog-container" id="block-container"></div>
     </section>
 
@@ -93,30 +93,18 @@
     <site-footer class="SiteFooter"></site-footer>
 
     <!-- Scripts -->
+    <script type="text/javascript" src="/js/utils.js?v=0.0.1"></script>
     <script>
-      const updateMeta = (name, content, isProperty = false) => {
-        const selector = isProperty
-          ? `meta[property="${name}"]`
-          : `meta[name="${name}"]`;
-
-        let tag = document.querySelector(selector);
-
-        if (!tag) {
-          tag = document.createElement("meta");
-
-          if (isProperty) {
-            tag.setAttribute("property", name);
-          } else {
-            tag.setAttribute("name", name);
-          }
-
-          document.head.appendChild(tag);
+      const render = async (title) => {
+        if (!title) {
+          const blockContainer = document.getElementById("block-container");
+          const h1 = document.createElement("h1");
+          h1.classList.add("SingletonBlog-title");
+          h1.innerText = "No blog found for this page!";
+          blockContainer.appendChild(h1);
+          return;
         }
 
-        tag.setAttribute("content", content);
-      };
-
-      const render = async (title) => {
         // Head content
         const pageUrl = `https://pwpinfra.com/insights/${encodeURIComponent(title)}`;
         const fullTitle = `PWP Infra - ${title}`;
@@ -140,7 +128,7 @@
         canonical.setAttribute("href", pageUrl);
 
         // Body content
-        const singletonBlog = document.getElementById("singleton-blog");
+        const singletonBlog = document.getElementById("main-content");
         const blockContainer = document.getElementById("block-container");
         const h1 = document.createElement("h1");
         const meta = document.createElement("div");
@@ -151,8 +139,14 @@
 
         h1.classList.add("SingletonBlog-title");
 
-        const response = await fetch("/constants/blogs.json");
-        const data = await response.json();
+        const data = await fetchJSON("/constants/blogs.json");
+
+        if (!data) {
+          h1.innerText = "Failed to load blog data.";
+          blockContainer.appendChild(h1);
+          return;
+        }
+
         const targetBlog = data.find((p) => p.title === title);
 
         if (!targetBlog) {
@@ -172,7 +166,7 @@
         meta.appendChild(postedOn);
 
         img.classList.add("SingletonBlog-hero");
-        img.innerHTML = `<img src="/assets/blogs/${targetBlog.title}/${targetBlog.thumbnail}" alt="" />`;
+        img.innerHTML = `<img src="/assets/blogs/${targetBlog.title}/${targetBlog.thumbnail}" alt="${targetBlog.title}" />`;
 
         content.classList.add("SingletonBlog-content");
 
@@ -196,10 +190,10 @@
 
             // Check for image
             if (b?.image) {
-              const img = document.createElement("div");
-              img.classList.add("SingletonBlog-innerImg");
-              img.innerHTML = `<img src="/assets/blogs/${targetBlog.title}/${b.image}" alt="" />`;
-              content.appendChild(img);
+              const imgBlock = document.createElement("div");
+              imgBlock.classList.add("SingletonBlog-innerImg");
+              imgBlock.innerHTML = `<img src="/assets/blogs/${targetBlog.title}/${b.image}" alt="${b.title || ""}" />`;
+              content.appendChild(imgBlock);
             }
           });
         }

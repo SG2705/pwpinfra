@@ -1,3 +1,19 @@
+.Header-skipToContent {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 999;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-green-3);
+  color: var(--color-white-1);
+  font-weight: 600;
+  border-radius: 0 0 0.5rem 0;
+}
+
+.Header-skipToContent:focus {
+  left: 0;
+}
+
 .Header {
   display: flex;
   flex-wrap: nowrap;

@@ -10,7 +10,6 @@ const TRUSTS = [
     imageSrc: "https://media.apigroupinc.com/logos/blsc.svg?align=c",
     imageAlt: "Beach Lake Sprinkler logo",
   },
-
   {
     href: "https://ellisfire.com/",
     imageSrc: "https://media.apigroupinc.com/logos/ellis.svg?align=c",
@@ -29,14 +28,13 @@ const TRUSTS = [
   {
     href: "https://www.richfire.com/",
     imageSrc: "https://media.apigroupinc.com/logos/richfire.svg?align=c",
-    imageAlt: "W&amp;M Sprinkler logo",
+    imageAlt: "W&M Sprinkler logo",
   },
   {
     href: "https://www.beachlakesprinkler.com/",
     imageSrc: "https://media.apigroupinc.com/logos/blsc.svg?align=c",
     imageAlt: "Beach Lake Sprinkler logo",
   },
-
   {
     href: "https://ellisfire.com/",
     imageSrc: "https://media.apigroupinc.com/logos/ellis.svg?align=c",
@@ -48,14 +46,16 @@ const TRUSTS = [
     imageAlt: "Island Fire logo",
   },
 ];
+
 const trustContainer = document.getElementById("trust-list-container");
 
-TRUSTS.forEach((t) => {
-  if (trustContainer) {
+if (trustContainer) {
+  TRUSTS.forEach((t) => {
     const link = document.createElement("a");
     const image = document.createElement("img");
     link.href = t.href;
     link.target = "_blank";
+    link.rel = "noopener noreferrer";
     image.src = t.imageSrc;
     image.alt = t.imageAlt;
     image.width = 130;
@@ -63,13 +63,22 @@ TRUSTS.forEach((t) => {
 
     link.appendChild(image);
     trustContainer.appendChild(link);
-  }
-});
+  });
+}
 
-// Clients
-const viewport = document.querySelector(".embla__viewport");
-const embla = EmblaCarousel(viewport, {
-  loop: false,
-  align: "start",
-  dragFree: false,
+// Clients Carousel
+document.addEventListener("DOMContentLoaded", () => {
+  const viewport = document.querySelector(".embla__viewport");
+
+  if (viewport && typeof EmblaCarousel !== "undefined") {
+    try {
+      EmblaCarousel(viewport, {
+        loop: false,
+        align: "start",
+        dragFree: false,
+      });
+    } catch (error) {
+      console.error("Failed to initialize carousel:", error);
+    }
+  }
 });

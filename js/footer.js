@@ -20,7 +20,7 @@ class SiteFooter extends HTMLElement {
     const brand = this.getAttribute("brand") || "PWP Infra";
 
     this.innerHTML = `
-      <footer class="Footer">
+      <footer class="Footer" role="contentinfo">
         <div class="Footer-mask"></div>
         <div class="Footer-contentWrapper">
           <div class="Footer-contentInfo">
@@ -38,34 +38,34 @@ class SiteFooter extends HTMLElement {
               and operational excellence.
             </p>
             <div class="Footer-socialInfo">
-              <a class="Footer-socialInfoIcon" href="#">
+              <a class="Footer-socialInfoIcon" href="#" aria-label="Follow us on Facebook">
                 <img
                   src="/assets/web/meta.svg"
-                  alt="meta"
+                  alt="Facebook"
                   width="20"
                   height="20"
                 />
               </a>
-              <a class="Footer-socialInfoIcon" href="#">
+              <a class="Footer-socialInfoIcon" href="#" aria-label="Follow us on Twitter">
                 <img
                   src="/assets/web/twitter.svg"
-                  alt="twitter"
+                  alt="Twitter"
                   width="20"
                   height="20"
                 />
               </a>
-              <a class="Footer-socialInfoIcon" href="#">
+              <a class="Footer-socialInfoIcon" href="#" aria-label="Follow us on Instagram">
                 <img
                   src="/assets/web/instagram.svg"
-                  alt="instagram"
+                  alt="Instagram"
                   width="20"
                   height="20"
                 />
               </a>
-              <a class="Footer-socialInfoIcon" href="#">
+              <a class="Footer-socialInfoIcon" href="#" aria-label="Follow us on LinkedIn">
                 <img
                   src="/assets/web/linkedin.svg"
-                  alt="linkedin"
+                  alt="LinkedIn"
                   width="20"
                   height="20"
                 />

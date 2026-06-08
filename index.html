@@ -46,9 +46,8 @@
       content="/assets/favicon/web-app-manifest-512x512.png"
     />
 
-    <!-- Performance: Preconnect (example for Google Fonts or CDN) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Performance: Preconnect -->
+    <!-- Add preconnect links here when external fonts/CDNs are used -->
 
     <!-- Preload critical CSS -->
     <link rel="preload" href="/css/main.css?v=0.0.1" as="style" />
@@ -58,6 +57,7 @@
     <link rel="stylesheet" href="/css/header.css?v=0.0.1" />
     <link rel="stylesheet" href="/css/footer.css?v=0.0.1" />
     <link rel="stylesheet" href="/css/index.css?v=0.0.1" />
+    <link rel="stylesheet" href="/css/responsive.css?v=0.0.1" />
 
     <!-- Favicon -->
     <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon" />
@@ -85,7 +85,7 @@
     <site-header></site-header>
 
     <!-- Section -->
-    <section class="Scale">
+    <section class="Scale" id="main-content">
       <div class="Scale-imageWrapper">
         <img src="/assets/web/scale-1.png" alt="Refine your space" />
       </div>
@@ -110,12 +110,17 @@
       <div class="Insights-cardsHolder" id="insights-card-holder"></div>
     </section>
 
+    <script type="text/javascript" src="/js/utils.js?v=0.0.1"></script>
     <script>
       const renderInsights = async () => {
         const insightsHolder = document.getElementById("insights-card-holder");
 
-        const response = await fetch("/constants/blogs.json");
-        const insights = await response.json();
+        const insights = await fetchJSON("/constants/blogs.json");
+
+        if (!insights) {
+          insightsHolder.innerHTML = "<p>Failed to load insights.</p>";
+          return;
+        }
 
         let insightsList = [];
         const featuredInsights = insights.filter((i) => i?.isFeatured) ?? [];
@@ -135,7 +140,7 @@
 
           card.classList.add("Insights-card");
           img.src = `/assets/blogs/${i.title}/${i.thumbnail}`;
-          img.alt = "";
+          img.alt = i.title;
 
           overlay.classList.add("Insights-cardOverlay");
           p.classList.add("Typography4");
@@ -362,111 +367,72 @@
       <div class="ClientSpeaks-cardHolder">
         <div class="embla">
           <div class="embla__viewport">
-            <div class="embla__container">
-              <div class="embla__slide ClientSpeaks-card">
-                <div class="ClientSpeaks-cardHeader">
-                  <img
-                    src="https://img.freepik.com/free-photo/close-up-portrait-curly-handsome-european-male_176532-8133.jpg?semt=ais_rp_progressive&w=740&q=80"
-                    alt="Bijoy Padnambham"
-                  />
-                  <div class="ClientSpeaks-cardProfile">
-                    <p class="Typography8 ClientSpeaks-cardProfileName">
-                      Bijoy Padnambham
-                    </p>
-                    <p class="Typography2 ClientSpeaks-cardProfileDesignation">
-                      Head IT Applications, Marico
-                    </p>
-                  </div>
-                  <div class="ClientSpeaks-cardProfileRating">★★★★★</div>
-                </div>
-                <p class="Typography3 ClientSpeaks-cardDescription">
-                  We are working with Atrina team since 5 Years and have done
-                  many projects on SFA Automation, Retailer Reach, Security
-                  Upgrades and recently have delivered highly scalable Sales
-                  Platform integrated with SAP, Supply Chain, General Trade,
-                  Modern Trade systems...
-                </p>
-              </div>
-
-              <div class="embla__slide ClientSpeaks-card">
-                <div class="ClientSpeaks-cardHeader">
-                  <img
-                    src="https://img.freepik.com/free-photo/close-up-portrait-curly-handsome-european-male_176532-8133.jpg?semt=ais_rp_progressive&w=740&q=80"
-                    alt="Bijoy Padnambham"
-                  />
-                  <div class="ClientSpeaks-cardProfile">
-                    <p class="Typography8 ClientSpeaks-cardProfileName">
-                      Bijoy Padnambham
-                    </p>
-                    <p class="Typography2 ClientSpeaks-cardProfileDesignation">
-                      Head IT Applications, Marico
-                    </p>
-                  </div>
-                  <div class="ClientSpeaks-cardProfileRating">★★★★★</div>
-                </div>
-                <p class="Typography3 ClientSpeaks-cardDescription">
-                  We are working with Atrina team since 5 Years and have done
-                  many projects on SFA Automation, Retailer Reach, Security
-                  Upgrades and recently have delivered highly scalable Sales
-                  Platform integrated with SAP, Supply Chain, General Trade,
-                  Modern Trade systems...
-                </p>
-              </div>
-
-              <div class="embla__slide ClientSpeaks-card">
-                <div class="ClientSpeaks-cardHeader">
-                  <img
-                    src="https://img.freepik.com/free-photo/close-up-portrait-curly-handsome-european-male_176532-8133.jpg?semt=ais_rp_progressive&w=740&q=80"
-                    alt="Bijoy Padnambham"
-                  />
-                  <div class="ClientSpeaks-cardProfile">
-                    <p class="Typography8 ClientSpeaks-cardProfileName">
-                      Bijoy Padnambham
-                    </p>
-                    <p class="Typography2 ClientSpeaks-cardProfileDesignation">
-                      Head IT Applications, Marico
-                    </p>
-                  </div>
-                  <div class="ClientSpeaks-cardProfileRating">★★★★★</div>
-                </div>
-                <p class="Typography3 ClientSpeaks-cardDescription">
-                  We are working with Atrina team since 5 Years and have done
-                  many projects on SFA Automation, Retailer Reach, Security
-                  Upgrades and recently have delivered highly scalable Sales
-                  Platform integrated with SAP, Supply Chain, General Trade,
-                  Modern Trade systems...
-                </p>
-              </div>
-
-              <div class="embla__slide ClientSpeaks-card">
-                <div class="ClientSpeaks-cardHeader">
-                  <img
-                    src="https://img.freepik.com/free-photo/close-up-portrait-curly-handsome-european-male_176532-8133.jpg?semt=ais_rp_progressive&w=740&q=80"
-                    alt="Bijoy Padnambham"
-                  />
-                  <div class="ClientSpeaks-cardProfile">
-                    <p class="Typography8 ClientSpeaks-cardProfileName">
-                      Bijoy Padnambham
-                    </p>
-                    <p class="Typography2 ClientSpeaks-cardProfileDesignation">
-                      Head IT Applications, Marico
-                    </p>
-                  </div>
-                  <div class="ClientSpeaks-cardProfileRating">★★★★★</div>
-                </div>
-                <p class="Typography3 ClientSpeaks-cardDescription">
-                  We are working with Atrina team since 5 Years and have done
-                  many projects on SFA Automation, Retailer Reach, Security
-                  Upgrades and recently have delivered highly scalable Sales
-                  Platform integrated with SAP, Supply Chain, General Trade,
-                  Modern Trade systems...
-                </p>
-              </div>
-            </div>
+            <div class="embla__container" id="testimonials-container"></div>
           </div>
         </div>
       </div>
     </section>
+
+    <script>
+      const TESTIMONIALS = [
+        {
+          name: "Bijoy Padnambham",
+          designation: "Head IT Applications, Marico",
+          image:
+            "https://img.freepik.com/free-photo/close-up-portrait-curly-handsome-european-male_176532-8133.jpg?semt=ais_rp_progressive&w=740&q=80",
+          rating: 5,
+          text: "We are working with Atrina team since 5 Years and have done many projects on SFA Automation, Retailer Reach, Security Upgrades and recently have delivered highly scalable Sales Platform integrated with SAP, Supply Chain, General Trade, Modern Trade systems...",
+        },
+        {
+          name: "Bijoy Padnambham",
+          designation: "Head IT Applications, Marico",
+          image:
+            "https://img.freepik.com/free-photo/close-up-portrait-curly-handsome-european-male_176532-8133.jpg?semt=ais_rp_progressive&w=740&q=80",
+          rating: 5,
+          text: "We are working with Atrina team since 5 Years and have done many projects on SFA Automation, Retailer Reach, Security Upgrades and recently have delivered highly scalable Sales Platform integrated with SAP, Supply Chain, General Trade, Modern Trade systems...",
+        },
+        {
+          name: "Bijoy Padnambham",
+          designation: "Head IT Applications, Marico",
+          image:
+            "https://img.freepik.com/free-photo/close-up-portrait-curly-handsome-european-male_176532-8133.jpg?semt=ais_rp_progressive&w=740&q=80",
+          rating: 5,
+          text: "We are working with Atrina team since 5 Years and have done many projects on SFA Automation, Retailer Reach, Security Upgrades and recently have delivered highly scalable Sales Platform integrated with SAP, Supply Chain, General Trade, Modern Trade systems...",
+        },
+        {
+          name: "Bijoy Padnambham",
+          designation: "Head IT Applications, Marico",
+          image:
+            "https://img.freepik.com/free-photo/close-up-portrait-curly-handsome-european-male_176532-8133.jpg?semt=ais_rp_progressive&w=740&q=80",
+          rating: 5,
+          text: "We are working with Atrina team since 5 Years and have done many projects on SFA Automation, Retailer Reach, Security Upgrades and recently have delivered highly scalable Sales Platform integrated with SAP, Supply Chain, General Trade, Modern Trade systems...",
+        },
+      ];
+
+      const testimonialsContainer = document.getElementById(
+        "testimonials-container",
+      );
+
+      if (testimonialsContainer) {
+        TESTIMONIALS.forEach((t) => {
+          const stars = "★".repeat(t.rating) + "☆".repeat(5 - t.rating);
+          const slide = document.createElement("div");
+          slide.classList.add("embla__slide", "ClientSpeaks-card");
+          slide.innerHTML = `
+            <div class="ClientSpeaks-cardHeader">
+              <img src="${t.image}" alt="${t.name}" />
+              <div class="ClientSpeaks-cardProfile">
+                <p class="Typography8 ClientSpeaks-cardProfileName">${t.name}</p>
+                <p class="Typography2 ClientSpeaks-cardProfileDesignation">${t.designation}</p>
+              </div>
+              <div class="ClientSpeaks-cardProfileRating">${stars}</div>
+            </div>
+            <p class="Typography3 ClientSpeaks-cardDescription">${t.text}</p>
+          `;
+          testimonialsContainer.appendChild(slide);
+        });
+      }
+    </script>
 
     <!-- Footer -->
     <site-footer class="SiteFooter"></site-footer>
@@ -475,9 +441,12 @@
     <noscript> You need to enable JavaScript to run this app. </noscript>
 
     <!-- Defer JS -->
+    <script
+      src="https://unpkg.com/embla-carousel@8.1.5/embla-carousel.umd.js"
+      defer
+    ></script>
     <script type="text/javascript" src="/js/main.js?v=0.0.1" defer></script>
     <script type="text/javascript" src="/js/header.js?v=0.0.1" defer></script>
     <script type="text/javascript" src="/js/footer.js?v=0.0.1" defer></script>
-    <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js"></script>
   </body>
 </html>

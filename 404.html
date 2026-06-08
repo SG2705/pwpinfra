@@ -46,9 +46,8 @@
       content="/assets/favicon/web-app-manifest-512x512.png"
     />
 
-    <!-- Performance: Preconnect (example for Google Fonts or CDN) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Performance: Preconnect -->
+    <!-- Add preconnect links here when external fonts/CDNs are used -->
 
     <!-- Preload critical CSS -->
     <link rel="preload" href="/css/main.css?v=0.0.1" as="style" />
@@ -58,6 +57,7 @@
     <link rel="stylesheet" href="/css/header.css?v=0.0.1" />
     <link rel="stylesheet" href="/css/footer.css?v=0.0.1" />
     <link rel="stylesheet" href="/css/404.css?v=0.0.1" />
+    <link rel="stylesheet" href="/css/responsive.css?v=0.0.1" />
 
     <!-- Favicon -->
     <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon" />
@@ -85,7 +85,7 @@
     <site-header></site-header>
 
     <!-- Section -->
-    <section class="Nodata">
+    <section class="Nodata" id="main-content">
       <p class="Typography6 Nodata-contentTitle">
         The page you are looking for does not exist!
       </p>

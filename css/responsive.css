@@ -1,0 +1,553 @@
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Tablet: 768px - 1024px */
+@media (max-width: 64rem) {
+  /* Header */
+  .Header {
+    padding: 1.5rem 2rem;
+  }
+
+  .Header-navList {
+    gap: 2rem;
+  }
+
+  .Header-navListItem-contactUsBtn {
+    margin-inline-start: 2rem;
+    padding: 0.75rem 1.5rem;
+  }
+
+  /* Homepage */
+  .Scale {
+    flex-direction: column;
+    padding-inline: 2rem;
+  }
+
+  .Scale-imageWrapper,
+  .Scale-contentWrapper {
+    aspect-ratio: auto;
+  }
+
+  .Scale-contentWrapper {
+    padding: 3rem;
+    border-radius: 0.675rem;
+  }
+
+  .Insights {
+    padding-inline: 2rem;
+    margin-top: 5rem;
+  }
+
+  .Insights-cardsHolder {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .HomeAboutUs,
+  .HomeWhy {
+    flex-direction: column;
+    padding-inline: 2rem;
+    margin-top: 5rem;
+  }
+
+  .HomeAboutUs-imageWrapper,
+  .HomeAboutUs-contentWrapper,
+  .HomeWhy-imageWrapper,
+  .HomeWhy-contentWrapper {
+    aspect-ratio: auto;
+  }
+
+  .WhatWeDo {
+    padding-inline: 2rem;
+  }
+
+  .WhatWeDo-cardsHolder {
+    grid-template-columns: 1fr;
+  }
+
+  .HomeProjects {
+    padding-inline: 2rem;
+    margin-top: 5rem;
+  }
+
+  .HomeProjects-cardHolder {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .HomeProjects-card.tall {
+    grid-row: span 1;
+  }
+
+  .HomeProjects-card.wide {
+    grid-column: span 1;
+  }
+
+  .Trust {
+    margin-top: 5rem;
+  }
+
+  .Trust-listContainer {
+    gap: 2rem;
+  }
+
+  .ClientSpeaks {
+    margin-block: 3rem 5rem;
+  }
+
+  /* About Us */
+  .Impact {
+    padding-inline: 2rem;
+  }
+
+  .Mission {
+    padding-inline: 2rem;
+    margin-block: 10rem 2rem;
+  }
+
+  .Value {
+    padding-inline: 2rem;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .Value-contentDescription {
+    padding-inline-end: 0;
+  }
+
+  .Value-contentImage {
+    width: 100%;
+  }
+
+  .Leadership {
+    padding-inline: 2rem;
+    margin-block: 5rem;
+  }
+
+  .Leadership-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  /* Gujarat */
+  .Expand {
+    padding-inline: 2rem;
+  }
+
+  .Expand-contentWrapper {
+    margin-inline: 4rem;
+  }
+
+  .Expansion {
+    padding-inline: 2rem;
+  }
+
+  .Expansion-wrapper {
+    flex-direction: column;
+  }
+
+  .Expansion-right {
+    width: 100%;
+  }
+
+  /* Services */
+  .ResearchCard-marketingWrapper {
+    margin-right: 2rem;
+    flex-direction: column;
+    padding-block: 2rem;
+  }
+
+  .ResearchCard-marketingCard:first-child {
+    padding-left: 1.25rem !important;
+    margin-left: 0;
+  }
+
+  .ResearchValues {
+    padding: 2rem;
+  }
+
+  .ResearchValues-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .ResearchCustomer {
+    padding: 2rem;
+  }
+
+  .ResearchCustomer-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  /* Projects */
+  .Projects {
+    padding-inline: 2rem;
+  }
+
+  .Projects-content {
+    padding-inline: 2rem;
+  }
+
+  .Projects-categoryWrapper {
+    padding-inline: 0;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .Projects-categoryCard.wide {
+    grid-column: span 1;
+  }
+
+  /* Projects By Type */
+  .ProjectsByCat {
+    padding-inline: 2rem;
+  }
+
+  .ProjectsByCat-cardWrapper {
+    padding-inline: 0;
+    grid-template-columns: 1fr;
+  }
+
+  /* Profile */
+  .Profile {
+    padding-inline: 2rem;
+  }
+
+  .Profile-wrapper {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .Profile-content {
+    width: 100%;
+  }
+
+  /* Singleton Project */
+  .SingletonProject {
+    padding-inline: 2rem;
+  }
+
+  .SingletonProject-detailsWrapper {
+    padding: 2rem 0;
+  }
+
+  /* Singleton Blog */
+  .SingletonBlog {
+    padding-inline: 2rem;
+  }
+
+  /* Insights */
+  .InsightsFeatured-gridContainer {
+    grid-template-columns: repeat(2, 1fr);
+    padding-inline: 2rem;
+  }
+
+  .InsightsFeatured-blogImg {
+    margin-inline: 2rem;
+  }
+
+  /* Footer */
+  .Footer {
+    padding: 2rem 2rem 0;
+  }
+
+  .Footer-contentWrapper {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .Footer-menuLink {
+    margin-left: 0;
+  }
+}
+
+/* Mobile: below 768px */
+@media (max-width: 48rem) {
+  /* Typography scaling */
+  .Typography6 {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+  }
+
+  .Typography7 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .Typography9 {
+    font-size: 2rem;
+    line-height: 140%;
+  }
+
+  /* Header */
+  .Header {
+    padding: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .Header-navWrapper {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .Header-navList {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .Header-navListItem-contactUsBtn {
+    margin-inline-start: 0;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* Homepage */
+  .Scale-contentTitle {
+    margin-inline: 1.5rem;
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .Scale-redirectBtn {
+    margin-inline: 1.5rem;
+  }
+
+  .Insights {
+    padding-inline: 1rem;
+    margin-top: 3rem;
+  }
+
+  .Insights-cardsHolder {
+    grid-template-columns: 1fr;
+  }
+
+  .Insights-card {
+    height: 280px;
+  }
+
+  .HomeAboutUs,
+  .HomeWhy {
+    padding-inline: 1rem;
+    margin-top: 3rem;
+  }
+
+  .WhatWeDo {
+    padding-inline: 1rem;
+    padding-block: 3rem;
+    margin-top: 3rem;
+  }
+
+  .HomeProjects {
+    padding-inline: 1rem;
+    margin-top: 3rem;
+    gap: 1.5rem;
+  }
+
+  .HomeProjects-cardHolder {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 200px;
+  }
+
+  .Trust-listContainer {
+    gap: 1.5rem;
+    margin-inline: 1rem;
+  }
+
+  .ClientSpeaks {
+    padding-inline: 1rem;
+  }
+
+  .ClientSpeaks-card {
+    min-width: auto;
+  }
+
+  /* About Us */
+  .Impact {
+    padding-inline: 1rem;
+  }
+
+  .Impact-contentTitle {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .Mission {
+    padding-inline: 1rem;
+    margin-block: 8rem 2rem;
+    aspect-ratio: auto;
+  }
+
+  .Mission-contentWrappers {
+    flex-direction: column;
+    padding-inline: 1rem;
+    transform: none;
+    gap: 2rem;
+  }
+
+  .Value {
+    padding-inline: 1rem;
+    margin-top: 3rem;
+  }
+
+  .Value-maskWrapper-1 {
+    display: none;
+  }
+
+  .Leadership {
+    padding-inline: 1rem;
+    margin-block: 3rem;
+  }
+
+  .Leadership-member {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .Leadership-content {
+    width: 100%;
+  }
+
+  /* Gujarat */
+  .Expand {
+    padding-inline: 1rem;
+    aspect-ratio: auto;
+    min-height: 50vh;
+  }
+
+  .Expand-contentWrapper {
+    margin-inline: 1rem;
+    margin-top: 3rem;
+  }
+
+  .Expansion {
+    padding-inline: 1rem;
+    margin-block: 3rem;
+  }
+
+  /* Services */
+  .ResearchCard {
+    padding-top: 3rem;
+    gap: 2rem;
+  }
+
+  .ResearchCard-contentTitle {
+    font-size: 2rem;
+    padding-inline: 1rem;
+  }
+
+  .ResearchCard-marketingWrapper {
+    margin-right: 0;
+    border-top-right-radius: 0;
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+
+  .ResearchValues {
+    padding: 1.5rem;
+  }
+
+  .ResearchValues-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .ResearchCustomer {
+    padding: 1.5rem;
+    margin-bottom: 5rem;
+  }
+
+  .ResearchCustomer-container {
+    grid-template-columns: 1fr;
+  }
+
+  /* Projects */
+  .Projects {
+    padding-inline: 1rem;
+  }
+
+  .Projects-content {
+    padding-inline: 0;
+  }
+
+  .Projects-categoryWrapper {
+    padding-inline: 0;
+    grid-template-columns: 1fr;
+    margin-block: 2rem;
+  }
+
+  /* Projects by Type */
+  .ProjectsByCat {
+    padding-inline: 1rem;
+  }
+
+  .ProjectsByCat-tabGroup {
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .ProjectsByCat-toggleWrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ProjectsByCat-cardWrapper {
+    padding-inline: 1rem;
+    margin-block: 2rem;
+  }
+
+  /* Profile */
+  .Profile {
+    padding-inline: 1rem;
+    margin-block: 2rem 5rem;
+  }
+
+  .Profile-content h1 {
+    font-size: 2.5rem;
+  }
+
+  /* Singleton */
+  .SingletonProject {
+    padding-inline: 1rem;
+    margin-block: 2rem 5rem;
+  }
+
+  #gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .SingletonBlog {
+    padding-inline: 1rem;
+    margin-block: 2rem 5rem;
+  }
+
+  .SingletonBlog-title {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+
+  /* Insights */
+  .InsightsFeatured-gridContainer {
+    grid-template-columns: 1fr;
+    padding-inline: 1rem;
+  }
+
+  .InsightsFeatured-blogImg {
+    margin-inline: 1rem;
+  }
+
+  .featured-title {
+    font-size: 2rem;
+    line-height: 2.5rem;
+    padding-inline: 1rem;
+  }
+
+  /* Footer */
+  .Footer {
+    padding: 1.5rem 1rem 0;
+  }
+
+  .Footer-extrasWrapper {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+}

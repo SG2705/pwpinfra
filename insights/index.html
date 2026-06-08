@@ -11,7 +11,7 @@
     <meta name="title" content="PWP Infra - Insights" />
     <meta
       name="description"
-      content="PWP is a strategic infrastructure consulting firm delivering scalable, execution-focused solutions that drive long-term growth and operational excellence."
+      content="Read insights and articles from PWP Infra on infrastructure expansion, market research, and business growth strategies."
     />
     <meta name="author" content="Sagar Gupta" />
     <meta name="robots" content="index, follow" />
@@ -26,7 +26,7 @@
     <meta property="og:title" content="PWP Infra - Insights" />
     <meta
       property="og:description"
-      content="PWP is a strategic infrastructure consulting firm delivering scalable, execution-focused solutions that drive long-term growth and operational excellence."
+      content="Read insights and articles from PWP Infra on infrastructure expansion, market research, and business growth strategies."
     />
     <meta
       property="og:image"
@@ -39,16 +39,15 @@
     <meta property="twitter:title" content="PWP Infra - Insights" />
     <meta
       property="twitter:description"
-      content="PWP is a strategic infrastructure consulting firm delivering scalable, execution-focused solutions that drive long-term growth and operational excellence."
+      content="Read insights and articles from PWP Infra on infrastructure expansion, market research, and business growth strategies."
     />
     <meta
       property="twitter:image"
       content="/assets/favicon/web-app-manifest-512x512.png"
     />
 
-    <!-- Performance: Preconnect (example for Google Fonts or CDN) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Performance: Preconnect -->
+    <!-- Add preconnect links here when external fonts/CDNs are used -->
 
     <!-- Preload critical CSS -->
     <link rel="preload" href="/css/main.css?v=0.0.1" as="style" />
@@ -58,6 +57,7 @@
     <link rel="stylesheet" href="/css/header.css?v=0.0.1" />
     <link rel="stylesheet" href="/css/footer.css?v=0.0.1" />
     <link rel="stylesheet" href="/css/insights.css?v=0.0.1" />
+    <link rel="stylesheet" href="/css/responsive.css?v=0.0.1" />
 
     <!-- Favicon -->
     <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon" />
@@ -85,7 +85,7 @@
     <site-header></site-header>
 
     <!-- Section -->
-    <section class="InsightsFeatured" id="featured-blog"></section>
+    <section class="InsightsFeatured" id="main-content"></section>
 
     <!-- Section -->
     <section class="InsightsBlog" id="insights-blog">
@@ -100,88 +100,72 @@
     <site-footer class="SiteFooter"></site-footer>
 
     <!-- Scripts -->
+    <script type="text/javascript" src="/js/utils.js?v=0.0.1"></script>
     <script>
-      const renderFeatured = async () => {
-        const featuredContainer = document.getElementById("featured-blog");
-
-        const response = await fetch("/constants/blogs.json");
-        const data = await response.json();
-
-        const featuredBlogs = data?.filter((b) => b.isFeatured);
-
-        if (featuredBlogs?.length === 0) {
-          featuredContainer.style.display = "none";
-
-          return;
-        }
-
-        const featureBlog = featuredBlogs?.[0];
-
-        if (!featureBlog) {
-          featuredContainer.style.display = "none";
-
-          return;
-        }
-
-        // Body content
-        const container = document.createElement("div");
-        const h1 = document.createElement("h1");
-        const blogMeta = document.createElement("div");
-        const postedBy = document.createElement("span");
-        const postedOn = document.createElement("span");
-        const img = document.createElement("div");
-        const description = document.createElement("p");
-        const a = document.createElement("a");
-
-        h1.classList.add("featured-title");
-        h1.innerText = featureBlog.title;
-
-        blogMeta.classList.add("InsightsFeatured-blogMeta");
-        postedBy.innerText = featureBlog.postedBy;
-        postedOn.innerText = `Posted on ${featureBlog.postedOn}`;
-        blogMeta.appendChild(postedBy);
-        blogMeta.appendChild(postedOn);
-
-        img.classList.add("InsightsFeatured-blogImg");
-        img.innerHTML = `<img src="/assets/blogs/${featureBlog.title}/thumbnail.png" alt="Featured Blog" />`;
-
-        a.classList.add("InsightsFeatured-readMore");
-        a.href = `/insights/blog/?b=${featureBlog.title}`;
-        a.innerText = "Read More";
-
-        container.appendChild(h1);
-        container.appendChild(blogMeta);
-        container.appendChild(img);
-
-        const currentBlocks = featureBlog?.blocks;
-
-        if (currentBlocks && currentBlocks?.length > 0) {
-          description.classList.add("InsightsFeatured-description");
-          description.innerText = currentBlocks?.[0].description;
-          container.appendChild(description);
-        }
-
-        container.appendChild(a);
-        featuredContainer.appendChild(container);
-      };
-
-      renderFeatured();
-
-      const renderBlogList = async () => {
+      const renderInsights = async () => {
+        const featuredContainer = document.getElementById("main-content");
         const maincontainer = document.getElementById("insights-blog");
-
-        const response = await fetch("/constants/blogs.json");
-        const blogs = await response.json();
-
-        if (!blogs || blogs.length === 0) {
-          maincontainer.style.display = "none";
-
-          return;
-        }
-
         const blogsContainer = document.getElementById("blogs-container");
 
-        blogs.forEach((blog) => {
+        const data = await fetchJSON("/constants/blogs.json");
+
+        if (!data || data.length === 0) {
+          featuredContainer.style.display = "none";
+          maincontainer.style.display = "none";
+          return;
+        }
+
+        // Render featured blog
+        const featuredBlogs = data.filter((b) => b.isFeatured);
+
+        if (featuredBlogs.length === 0) {
+          featuredContainer.style.display = "none";
+        } else {
+          const featureBlog = featuredBlogs[0];
+
+          const container = document.createElement("div");
+          const h1 = document.createElement("h1");
+          const blogMeta = document.createElement("div");
+          const postedBy = document.createElement("span");
+          const postedOn = document.createElement("span");
+          const img = document.createElement("div");
+          const description = document.createElement("p");
+          const a = document.createElement("a");
+
+          h1.classList.add("featured-title");
+          h1.innerText = featureBlog.title;
+
+          blogMeta.classList.add("InsightsFeatured-blogMeta");
+          postedBy.innerText = featureBlog.postedBy;
+          postedOn.innerText = `Posted on ${featureBlog.postedOn}`;
+          blogMeta.appendChild(postedBy);
+          blogMeta.appendChild(postedOn);
+
+          img.classList.add("InsightsFeatured-blogImg");
+          img.innerHTML = `<img src="/assets/blogs/${featureBlog.title}/thumbnail.png" alt="${featureBlog.title}" />`;
+
+          a.classList.add("InsightsFeatured-readMore");
+          a.href = `/insights/blog/?b=${featureBlog.title}`;
+          a.innerText = "Read More";
+
+          container.appendChild(h1);
+          container.appendChild(blogMeta);
+          container.appendChild(img);
+
+          const currentBlocks = featureBlog?.blocks;
+
+          if (currentBlocks && currentBlocks.length > 0) {
+            description.classList.add("InsightsFeatured-description");
+            description.innerText = currentBlocks[0].description;
+            container.appendChild(description);
+          }
+
+          container.appendChild(a);
+          featuredContainer.appendChild(container);
+        }
+
+        // Render blog list
+        data.forEach((blog) => {
           const card = document.createElement("div");
           const img = document.createElement("div");
           const date = document.createElement("div");
@@ -190,9 +174,10 @@
 
           card.classList.add("InsightsFeatured-card");
           img.classList.add("InsightsFeatured-cardImg");
-          img.innerHTML = `<img src="/assets/blogs/${blog.title}/${blog.thumbnail}" alt="" />`;
+          img.innerHTML = `<img src="/assets/blogs/${blog.title}/${blog.thumbnail}" alt="${blog.title}" />`;
 
           date.innerText = blog.postedOn;
+          date.classList.add("InsightsFeatured-date");
 
           h3.innerText = blog.title;
 
@@ -202,7 +187,7 @@
 
           const blocks = blog?.blocks;
 
-          if (blocks && blocks?.length > 0) {
+          if (blocks && blocks.length > 0) {
             const p = document.createElement("p");
             p.innerText = blocks[0].description;
 
@@ -217,7 +202,7 @@
         });
       };
 
-      renderBlogList();
+      renderInsights();
     </script>
 
     <!-- Defer JS -->

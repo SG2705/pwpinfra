@@ -55,9 +55,8 @@
       content="/assets/favicon/web-app-manifest-512x512.png"
     />
 
-    <!-- Performance: Preconnect (example for Google Fonts or CDN) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Performance: Preconnect -->
+    <!-- Add preconnect links here when external fonts/CDNs are used -->
 
     <!-- Preload critical CSS -->
     <link rel="preload" href="/css/main.css?v=0.0.1" as="style" />
@@ -67,6 +66,7 @@
     <link rel="stylesheet" href="/css/header.css?v=0.0.1" />
     <link rel="stylesheet" href="/css/footer.css?v=0.0.1" />
     <link rel="stylesheet" href="/css/projects-by-type.css?v=0.0.1" />
+    <link rel="stylesheet" href="/css/responsive.css?v=0.0.1" />
 
     <!-- Favicon -->
     <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon" />
@@ -97,7 +97,7 @@
     <site-header class="GradientSiteHeader"></site-header>
 
     <!-- Section -->
-    <section class="ProjectsByCat">
+    <section class="ProjectsByCat" id="main-content">
       <div class="ProjectsByCat-tabGroup" id="category-tabs">
         <a href="?category=bfsi" data-category="bfsi">BFSI</a>
         <a href="?category=hospitality" data-category="hospitality"
@@ -144,6 +144,7 @@
     <site-footer class="SiteFooter"></site-footer>
 
     <!-- Script -->
+    <script type="text/javascript" src="/js/utils.js?v=0.0.1"></script>
     <script>
       // Current categories
       // bfsi
@@ -157,8 +158,14 @@
         );
         projectsContainer.innerHTML = "";
 
-        const response = await fetch("/constants/projects.json");
-        const data = await response.json();
+        const data = await fetchJSON("/constants/projects.json");
+
+        if (!data) {
+          projectsContainer.innerHTML =
+            '<p class="ProjectsByCat-noDataText">Failed to load projects.</p>';
+          return;
+        }
+
         const targetData = data.filter(
           (p) =>
             ((status === 1 && p?.isCompleted) ||
@@ -168,7 +175,7 @@
 
         if (!targetData || targetData.length === 0) {
           projectsContainer.innerHTML =
-            '<p class="ProjectsByCat-noDataText"">No projects found!</p>';
+            '<p class="ProjectsByCat-noDataText">No projects found!</p>';
         }
 
         targetData.forEach((p) => {
@@ -216,7 +223,12 @@
       });
 
       // Status
-      const savedStatus = localStorage.getItem("project-status");
+      let savedStatus;
+      try {
+        savedStatus = localStorage.getItem("project-status");
+      } catch (e) {
+        savedStatus = null;
+      }
 
       if (savedStatus) {
         const tag =
@@ -231,7 +243,11 @@
       }
 
       const handleRadio = (e) => {
-        localStorage.setItem("project-status", e);
+        try {
+          localStorage.setItem("project-status", e);
+        } catch (err) {
+          // localStorage unavailable (e.g. private browsing)
+        }
 
         render(e, category);
       };
