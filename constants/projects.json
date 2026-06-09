@@ -1,7 +1,7 @@
 [
   {
-    "title": "HYATT Pune room refurbishment work of Standard, Delux and Luxury Suit Rooms for SQER Projects Pvt. Ltd. - 1",
-    "category": "bfsi",
+    "title": "HYATT Regency Ahmedabad Refurbishment Work",
+    "category": "hospitality",
     "thumbnail": "thumbnail.png",
     "images": ["thumbnail.png", "thumbnail.png", "thumbnail.png"],
     "blocks": [
@@ -21,24 +21,55 @@
     "isCompleted": false
   },
   {
-    "title": "HYATT Pune room refurbishment work of Standard, Delux and Luxury Suit Rooms for SQER Projects Pvt. Ltd. - 2",
-    "category": "bfsi",
+    "title": "Architecture Engineering and Construction of Connplex Cinemas Downtown Multiplex Model",
+    "category": "corporate",
     "thumbnail": "thumbnail.png",
-    "images": ["thumbnail.png"],
-    "isCompleted": true
+    "blocks": [
+      {
+        "title": "Project Name",
+        "description": "Architecture Engineering and Construction of Connplex Cinemas Downtown Multiplex Model"
+      },
+      {
+        "title": "Project Details",
+        "description": "Architectural Design Standardization featuring Parametric Facade, Exposed Concrete Facade, Site Master Planning, Civil, Structural,  MEP, HVAC, Fire Fighting,  Interior Design and Landscaping."
+      },
+      {
+        "title": "Project Value",
+        "description": "₹ 10 Crores"
+      },
+      {
+        "title": "Type of Structure",
+        "description": "Pre Engineered building with G+1 and Terrace"
+      }
+    ],
+    "isCompleted": false
   },
   {
-    "title": "HYATT Pune room refurbishment work of Standard, Delux and Luxury Suit Rooms for SQER Projects Pvt. Ltd. - 3",
-    "category": "food",
+    "title": "Civil and Interior Fit Out Execution for Connplex Cinemas at Skylandmark Vadodara",
+    "category": "corporate",
     "thumbnail": "thumbnail.png",
-    "images": ["thumbnail.png"],
-    "isCompleted": true
+    "blocks": [
+      {
+        "title": "Carpet Area",
+        "description": "7573 Sq. ft."
+      }
+    ],
+    "isCompleted": false
   },
   {
-    "title": "HYATT Pune room refurbishment work of Standard, Delux and Luxury Suit Rooms for SQER Projects Pvt. Ltd. - 4",
-    "category": "food",
+    "title": "Project Feasibility Studies for Connplex Cinemas at PAN India Locations",
+    "category": "corporate",
     "thumbnail": "thumbnail.png",
-    "images": ["thumbnail.png"],
-    "isCompleted": true
+    "blocks": [
+      {
+        "title": "States Covered",
+        "description": "Gujarat, Rajasthan, NCR, Bihar, Chhattisgarh, Jharkhand, Telengana, Punjab, Madhya Pradesh, Uttar Pradesh, Maharashtra"
+      },
+      {
+        "title": "Projects Size ",
+        "description": "Ranging from 6,000 Sqft to 40,000 Sqft"
+      }
+    ],
+    "isCompleted": false
   }
 ]

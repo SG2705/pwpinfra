@@ -124,6 +124,11 @@
   border-radius: 1rem;
 }
 
+.ProjectsByCat-cardImageWrapper {
+  width: 100%;
+  height: 100%;
+}
+
 .ProjectsByCat-noDataText,
 .ProjectsByCat-cardTitle {
   font-weight: 600;

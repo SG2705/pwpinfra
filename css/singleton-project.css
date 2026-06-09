@@ -14,6 +14,7 @@
 }
 
 .SingletonProject-detailsWrapper {
+  width: 100%;
   display: flex;
   padding: 4rem;
   align-items: flex-start;
