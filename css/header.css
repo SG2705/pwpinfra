@@ -76,3 +76,38 @@
 .Header-navListItem-contactUsBtn:hover {
   text-decoration: none;
 }
+
+/* Mobile Menu Toggle */
+.Header-menuToggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  flex-direction: column;
+  gap: 0.35rem;
+  z-index: 10;
+}
+
+.Header-menuToggleBar {
+  display: block;
+  width: 1.5rem;
+  height: 0.175rem;
+  background-color: var(--color-gray-1);
+  border-radius: 2px;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.Header-menuToggle[aria-expanded="true"] .Header-menuToggleBar:nth-child(1) {
+  transform: translateY(0.525rem) rotate(45deg);
+}
+
+.Header-menuToggle[aria-expanded="true"] .Header-menuToggleBar:nth-child(2) {
+  opacity: 0;
+}
+
+.Header-menuToggle[aria-expanded="true"] .Header-menuToggleBar:nth-child(3) {
+  transform: translateY(-0.525rem) rotate(-45deg);
+}

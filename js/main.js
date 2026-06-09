@@ -113,6 +113,7 @@ if (trustContainer) {
     image.alt = t.imageAlt;
     image.width = 130;
     image.height = 70;
+    image.loading = "lazy";
 
     link.appendChild(image);
     trustContainer.appendChild(link);

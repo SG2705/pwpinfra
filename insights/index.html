@@ -30,20 +30,20 @@
     />
     <meta
       property="og:image"
-      content="/assets/favicon/web-app-manifest-512x512.png"
+      content="https://pwpinfra.com/assets/favicon/web-app-manifest-512x512.png"
     />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://pwpinfra.com/insights/" />
-    <meta property="twitter:title" content="PWP Infra - Insights" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://pwpinfra.com/insights/" />
+    <meta name="twitter:title" content="PWP Infra - Insights" />
     <meta
       property="twitter:description"
       content="Read insights and articles from PWP Infra on infrastructure expansion, market research, and business growth strategies."
     />
     <meta
       property="twitter:image"
-      content="/assets/favicon/web-app-manifest-512x512.png"
+      content="https://pwpinfra.com/assets/favicon/web-app-manifest-512x512.png"
     />
 
     <!-- Performance: Preconnect -->
@@ -84,17 +84,22 @@
     <!-- Header -->
     <site-header></site-header>
 
-    <!-- Section -->
-    <section class="InsightsFeatured" id="main-content"></section>
+    <main>
+      <!-- Section -->
+      <section class="InsightsFeatured" id="main-content"></section>
 
-    <!-- Section -->
-    <section class="InsightsBlog" id="insights-blog">
-      <div class="InsightsFeatured-container">
-        <h2 class="InsightsFeatured-headingWrapper">Our Blog</h2>
+      <!-- Section -->
+      <section class="InsightsBlog" id="insights-blog">
+        <div class="InsightsFeatured-container">
+          <h2 class="InsightsFeatured-headingWrapper">Our Blog</h2>
 
-        <div class="InsightsFeatured-gridContainer" id="blogs-container"></div>
-      </div>
-    </section>
+          <div
+            class="InsightsFeatured-gridContainer"
+            id="blogs-container"
+          ></div>
+        </div>
+      </section>
+    </main>
 
     <!-- Footer -->
     <site-footer class="SiteFooter"></site-footer>
@@ -142,7 +147,10 @@
           blogMeta.appendChild(postedOn);
 
           img.classList.add("InsightsFeatured-blogImg");
-          img.innerHTML = `<img src="/assets/blogs/${featureBlog.title}/thumbnail.png" alt="${featureBlog.title}" />`;
+          const imgEl = document.createElement("img");
+          imgEl.src = `/assets/blogs/${encodeURIComponent(featureBlog.title)}/thumbnail.png`;
+          imgEl.alt = featureBlog.title;
+          img.appendChild(imgEl);
 
           a.classList.add("InsightsFeatured-readMore");
           a.href = `/insights/blog/?b=${featureBlog.title}`;
@@ -174,7 +182,10 @@
 
           card.classList.add("InsightsFeatured-card");
           img.classList.add("InsightsFeatured-cardImg");
-          img.innerHTML = `<img src="/assets/blogs/${blog.title}/${blog.thumbnail}" alt="${blog.title}" />`;
+          const blogImg = document.createElement("img");
+          blogImg.src = `/assets/blogs/${encodeURIComponent(blog.title)}/${blog.thumbnail}`;
+          blogImg.alt = blog.title;
+          img.appendChild(blogImg);
 
           date.innerText = blog.postedOn;
           date.classList.add("InsightsFeatured-date");

@@ -36,23 +36,23 @@
     />
     <meta
       property="og:image"
-      content="/assets/favicon/web-app-manifest-512x512.png"
+      content="https://pwpinfra.com/assets/favicon/web-app-manifest-512x512.png"
     />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta
       property="twitter:url"
       content="https://pwpinfra.com/projects/projects-by-type/"
     />
-    <meta property="twitter:title" content="PWP Infra - Projects By Type" />
+    <meta name="twitter:title" content="PWP Infra - Projects By Type" />
     <meta
       property="twitter:description"
       content="PWP is a strategic infrastructure consulting firm delivering scalable, execution-focused solutions that drive long-term growth and operational excellence."
     />
     <meta
       property="twitter:image"
-      content="/assets/favicon/web-app-manifest-512x512.png"
+      content="https://pwpinfra.com/assets/favicon/web-app-manifest-512x512.png"
     />
 
     <!-- Performance: Preconnect -->
@@ -96,53 +96,57 @@
     <!-- Header -->
     <site-header class="GradientSiteHeader"></site-header>
 
-    <!-- Section -->
-    <section class="ProjectsByCat" id="main-content">
-      <div class="ProjectsByCat-tabGroup" id="category-tabs">
-        <a href="?category=bfsi" data-category="bfsi">BFSI</a>
-        <a href="?category=hospitality" data-category="hospitality"
-          >Hospitality</a
-        >
-        <a href="?category=food" data-category="food">Food & Beverage</a>
-        <a href="?category=corporate" data-category="corporate">Corporate</a>
-        <a href="?category=retail" data-category="retail">Retail</a>
-        <a href="?category=industrial" data-category="industrial">Industrial</a>
-        <a href="?category=residential" data-category="residential"
-          >Residential</a
-        >
-      </div>
-
-      <div class="ProjectsByCat-toggleWrapper">
-        <span class="ProjectsByCat-title">Projects</span>
-        <div class="ProjectsByCat-toggleContainer">
-          <input
-            type="radio"
-            name="project-status"
-            id="project-ongoing"
-            onclick="handleRadio(0)"
-            checked
-          />
-          <input
-            type="radio"
-            name="project-status"
-            id="project-completed"
-            onclick="handleRadio(1)"
-          />
-          <div class="ProjectsByCat-toggleSlider"></div>
-          <label for="project-ongoing" class="ProjectsByCat-toggleOption">
-            ↻ Ongoing
-          </label>
-          <label for="project-completed" class="ProjectsByCat-toggleOption">
-            ✓ Completed
-          </label>
+    <main>
+      <!-- Section -->
+      <section class="ProjectsByCat" id="main-content">
+        <div class="ProjectsByCat-tabGroup" id="category-tabs">
+          <a href="?category=bfsi" data-category="bfsi">BFSI</a>
+          <a href="?category=hospitality" data-category="hospitality"
+            >Hospitality</a
+          >
+          <a href="?category=food" data-category="food">Food & Beverage</a>
+          <a href="?category=corporate" data-category="corporate">Corporate</a>
+          <a href="?category=retail" data-category="retail">Retail</a>
+          <a href="?category=industrial" data-category="industrial"
+            >Industrial</a
+          >
+          <a href="?category=residential" data-category="residential"
+            >Residential</a
+          >
         </div>
-      </div>
-    </section>
 
-    <section
-      class="ProjectsByCat-cardWrapper"
-      id="project-by-cat-container"
-    ></section>
+        <div class="ProjectsByCat-toggleWrapper">
+          <span class="ProjectsByCat-title">Projects</span>
+          <div class="ProjectsByCat-toggleContainer">
+            <input
+              type="radio"
+              name="project-status"
+              id="project-ongoing"
+              onclick="handleRadio(0)"
+              checked
+            />
+            <input
+              type="radio"
+              name="project-status"
+              id="project-completed"
+              onclick="handleRadio(1)"
+            />
+            <div class="ProjectsByCat-toggleSlider"></div>
+            <label for="project-ongoing" class="ProjectsByCat-toggleOption">
+              ↻ Ongoing
+            </label>
+            <label for="project-completed" class="ProjectsByCat-toggleOption">
+              ✓ Completed
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="ProjectsByCat-cardWrapper"
+        id="project-by-cat-container"
+      ></section>
+    </main>
 
     <!-- Footer -->
     <site-footer class="SiteFooter"></site-footer>
@@ -193,7 +197,11 @@
           title.innerText = p.title;
           title.href = `/projects/unit/?p=${p.title}`;
           imageContainer.classList.add("ProjectsByCat-cardImageWrapper");
-          imageContainer.innerHTML = `<img src="/assets/projects/${p.title}/${p.thumbnail}" alt="${p.title}" loading="lazy" />`;
+          const projImg = document.createElement("img");
+          projImg.src = `/assets/projects/${encodeURIComponent(p.title)}/${p.thumbnail}`;
+          projImg.alt = p.title;
+          projImg.loading = "lazy";
+          imageContainer.appendChild(projImg);
 
           card.appendChild(title);
 
@@ -212,13 +220,7 @@
 
       // Category
       const params = new URLSearchParams(window.location.search);
-      const category = params.get("category");
-
-      if (!category) {
-        document
-          .querySelector('#category-tabs a[data-category="bfsi"]')
-          .classList.add("ProjectsByCat-activeTab");
-      }
+      const category = params.get("category") || "bfsi";
 
       const tabs = document.querySelectorAll("#category-tabs a");
 

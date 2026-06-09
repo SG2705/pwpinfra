@@ -30,20 +30,20 @@
     />
     <meta
       property="og:image"
-      content="/assets/favicon/web-app-manifest-512x512.png"
+      content="https://pwpinfra.com/assets/favicon/web-app-manifest-512x512.png"
     />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://pwpinfra.com/" />
-    <meta property="twitter:title" content="PWP Infra" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://pwpinfra.com/" />
+    <meta name="twitter:title" content="PWP Infra" />
     <meta
       property="twitter:description"
       content="PWP is a strategic infrastructure consulting firm delivering scalable, execution-focused solutions that drive long-term growth and operational excellence."
     />
     <meta
       property="twitter:image"
-      content="/assets/favicon/web-app-manifest-512x512.png"
+      content="https://pwpinfra.com/assets/favicon/web-app-manifest-512x512.png"
     />
 
     <!-- Performance: Preconnect -->
@@ -84,280 +84,319 @@
     <!-- Header -->
     <site-header></site-header>
 
-    <!-- Section -->
-    <section class="Scale" id="main-content">
-      <div class="Scale-imageWrapper">
-        <img src="/assets/web/scale-1.png" alt="Refine your space" />
-      </div>
-      <div class="Scale-contentWrapper">
-        <p class="Typography6 Scale-contentTitle">
-          Refine Your Space, Shape The Environment, Elevate Your Business.
-        </p>
-        <a href="/contact-us" class="Scale-redirectBtn Typography1"
-          >Scale your business with PwP
-          <span class="Scale-redirectBtnIcon"></span
-        ></a>
-      </div>
-    </section>
+    <main>
+      <!-- Section -->
+      <section class="Scale" id="main-content">
+        <div class="Scale-imageWrapper">
+          <img src="/assets/web/scale-1.png" alt="Refine your space" />
+        </div>
+        <div class="Scale-contentWrapper">
+          <p class="Typography6 Scale-contentTitle">
+            Refine Your Space, Shape The Environment, Elevate Your Business.
+          </p>
+          <a href="/contact-us" class="Scale-redirectBtn Typography1"
+            >Scale your business with PwP
+            <span class="Scale-redirectBtnIcon"></span
+          ></a>
+        </div>
+      </section>
 
-    <!-- Section -->
-    <section class="Insights">
-      <div class="Insights-headingWrapper">
-        <p class="Typography6 Insights-headingTitle">Insights</p>
-        <a href="/insights/" class="Typography5 Insights-allArticle"
-          >See all articles <span class="Insights-allArticleBtns"></span
-        ></a>
-      </div>
-      <div class="Insights-cardsHolder" id="insights-card-holder"></div>
-    </section>
+      <!-- Section -->
+      <section class="Insights">
+        <div class="Insights-headingWrapper">
+          <p class="Typography6 Insights-headingTitle">Insights</p>
+          <a href="/insights/" class="Typography5 Insights-allArticle"
+            >See all articles <span class="Insights-allArticleBtns"></span
+          ></a>
+        </div>
+        <div class="Insights-cardsHolder" id="insights-card-holder"></div>
+      </section>
 
-    <script type="text/javascript" src="/js/utils.js?v=0.0.1"></script>
-    <script>
-      const renderInsights = async () => {
-        const insightsHolder = document.getElementById("insights-card-holder");
+      <script type="text/javascript" src="/js/utils.js?v=0.0.1"></script>
+      <script>
+        const renderInsights = async () => {
+          const insightsHolder = document.getElementById(
+            "insights-card-holder",
+          );
 
-        const insights = await fetchJSON("/constants/blogs.json");
+          const insights = await fetchJSON("/constants/blogs.json");
 
-        if (!insights) {
-          insightsHolder.innerHTML = "<p>Failed to load insights.</p>";
-          return;
-        }
+          if (!insights) {
+            insightsHolder.innerHTML = "<p>Failed to load insights.</p>";
+            return;
+          }
 
-        let insightsList = [];
-        const featuredInsights = insights.filter((i) => i?.isFeatured) ?? [];
-        const normalInsights = insights.filter((i) => !i?.isFeatured) ?? [];
+          let insightsList = [];
+          const featuredInsights = insights.filter((i) => i?.isFeatured) ?? [];
+          const normalInsights = insights.filter((i) => !i?.isFeatured) ?? [];
 
-        if (featuredInsights?.length > 4) {
-          insightsList = [...featuredInsights];
-        } else {
-          insightsList = [...featuredInsights, ...normalInsights].slice(0, 4);
-        }
+          if (featuredInsights?.length > 4) {
+            insightsList = [...featuredInsights];
+          } else {
+            insightsList = [...featuredInsights, ...normalInsights].slice(0, 4);
+          }
 
-        insightsList.forEach((i) => {
-          const link = document.createElement("a");
-          const card = document.createElement("div");
-          const img = document.createElement("img");
-          const overlay = document.createElement("div");
-          const p = document.createElement("p");
+          insightsList.forEach((i) => {
+            const link = document.createElement("a");
+            const card = document.createElement("div");
+            const img = document.createElement("img");
+            const overlay = document.createElement("div");
+            const p = document.createElement("p");
 
-          link.href = `/insights/blog/?b=${i.title}`;
-          card.classList.add("Insights-card");
-          img.src = `/assets/blogs/${i.title}/${i.thumbnail}`;
-          img.alt = i.title;
+            link.href = `/insights/blog/?b=${i.title}`;
+            card.classList.add("Insights-card");
+            img.src = `/assets/blogs/${i.title}/${i.thumbnail}`;
+            img.alt = i.title;
 
-          overlay.classList.add("Insights-cardOverlay");
-          p.classList.add("Typography4");
-          p.innerText = i.title;
+            overlay.classList.add("Insights-cardOverlay");
+            p.classList.add("Typography4");
+            p.innerText = i.title;
 
-          card.appendChild(img);
-          overlay.appendChild(p);
-          card.appendChild(overlay);
-          link.appendChild(card);
+            card.appendChild(img);
+            overlay.appendChild(p);
+            card.appendChild(overlay);
+            link.appendChild(card);
 
-          insightsHolder.appendChild(link);
-        });
-      };
+            insightsHolder.appendChild(link);
+          });
+        };
 
-      renderInsights();
-    </script>
+        renderInsights();
+      </script>
 
-    <!-- Section -->
-    <section class="HomeAboutUs">
-      <div class="HomeAboutUs-imageWrapper">
-        <img src="/assets/web/home-about-us-1.png" alt="Refine your space" />
-      </div>
-      <div class="HomeAboutUs-contentWrapper">
-        <p class="Typography4 HomeAboutUs-contentSubTitle">About Us —</p>
-        <p class="Typography7 HomeAboutUs-contentTitle">
-          We are a Strategic expansion and Turnkey delivery partner helping
-          brands grow confidently into new regions.
-        </p>
-        <p class="Typography3 HomeAboutUs-contentDescription">
-          As businesses expand beyond their home markets, they face complex
-          challenges—understanding local demand, choosing the right locations,
-          navigating regulations, controlling costs, and executing projects
-          flawlessly. We exist to simplify this journey.
-          <br />
-          <br />
-          Our firm supports Retail, F&B, Consumer Products, Financial Services
-          and other growth-oriented brands by providing end-to-end market entry
-          solutions—from early-stage feasibility and market research to real
-          estate advisory, design, and turnkey execution. We combine strategic
-          insight with on-ground expertise to ensure that every expansion
-          decision is informed, viable, and scalable.
-          <br />
-        </p>
-        <a href="/about-us/" class="HomeAboutUs-redirectBtn Typography1"
-          >More About Us<span class="HomeAboutUs-redirectBtnIcon"></span
-        ></a>
-      </div>
-    </section>
+      <!-- Section -->
+      <section class="HomeAboutUs">
+        <div class="HomeAboutUs-imageWrapper">
+          <img
+            src="/assets/web/home-about-us-1.png"
+            alt="About PWP Infra"
+            loading="lazy"
+          />
+        </div>
+        <div class="HomeAboutUs-contentWrapper">
+          <p class="Typography4 HomeAboutUs-contentSubTitle">About Us —</p>
+          <p class="Typography7 HomeAboutUs-contentTitle">
+            We are a Strategic expansion and Turnkey delivery partner helping
+            brands grow confidently into new regions.
+          </p>
+          <p class="Typography3 HomeAboutUs-contentDescription">
+            As businesses expand beyond their home markets, they face complex
+            challenges—understanding local demand, choosing the right locations,
+            navigating regulations, controlling costs, and executing projects
+            flawlessly. We exist to simplify this journey.
+            <br />
+            <br />
+            Our firm supports Retail, F&B, Consumer Products, Financial Services
+            and other growth-oriented brands by providing end-to-end market
+            entry solutions—from early-stage feasibility and market research to
+            real estate advisory, design, and turnkey execution. We combine
+            strategic insight with on-ground expertise to ensure that every
+            expansion decision is informed, viable, and scalable.
+            <br />
+          </p>
+          <a href="/about-us/" class="HomeAboutUs-redirectBtn Typography1"
+            >More About Us<span class="HomeAboutUs-redirectBtnIcon"></span
+          ></a>
+        </div>
+      </section>
 
-    <!-- Section -->
-    <section class="HomeWhy">
-      <div class="HomeWhy-imageWrapper">
-        <img src="/assets/web/home-about-us-2.png" alt="Refine your space" />
-      </div>
-      <div class="HomeWhy-contentWrapper">
-        <p class="Typography4 HomeWhy-contentSubTitle">Our Why —</p>
-        <p class="Typography7 HomeWhy-contentTitle">
-          We exist because expanding into a new region should be an opportunity
-          for growth-not a gamble
-        </p>
-        <p class="Typography3 HomeWhy-contentDescription">
-          Too often, businesses enter new markets without reliable local
-          insight, the right locations, or accountable execution. The result is
-          delayed launches, cost overruns, and underperforming outlets that
-          drain capital and confidence. Our purpose is to remove uncertainty
-          from expansion. Because growth should be deliberate, not accidental.
-          <br />
-          <br />
+      <!-- Section -->
+      <section class="HomeWhy">
+        <div class="HomeWhy-imageWrapper">
+          <img
+            src="/assets/web/home-about-us-2.png"
+            alt="Our mission and vision"
+            loading="lazy"
+          />
+        </div>
+        <div class="HomeWhy-contentWrapper">
+          <p class="Typography4 HomeWhy-contentSubTitle">Our Why —</p>
+          <p class="Typography7 HomeWhy-contentTitle">
+            We exist because expanding into a new region should be an
+            opportunity for growth-not a gamble
+          </p>
+          <p class="Typography3 HomeWhy-contentDescription">
+            Too often, businesses enter new markets without reliable local
+            insight, the right locations, or accountable execution. The result
+            is delayed launches, cost overruns, and underperforming outlets that
+            drain capital and confidence. Our purpose is to remove uncertainty
+            from expansion. Because growth should be deliberate, not accidental.
+            <br />
+            <br />
 
-          <span class="Typography4 HomeWhy-contentSubTitle">Our Vision</span>
-          - To be India's most trusted partner for business expansion
-          <br />
-          <span class="Typography4 HomeWhy-contentSubTitle">Our Mission</span>
-          - Data Driven expansion and accountable execution
-        </p>
-        <!-- <a href="#" class="HomeWhy-redirectBtn Typography1"
+            <span class="Typography4 HomeWhy-contentSubTitle">Our Vision</span>
+            - To be India's most trusted partner for business expansion
+            <br />
+            <span class="Typography4 HomeWhy-contentSubTitle">Our Mission</span>
+            - Data Driven expansion and accountable execution
+          </p>
+          <!-- <a href="#" class="HomeWhy-redirectBtn Typography1"
           >More About Us<span class="HomeWhy-redirectBtnIcon"></span
         ></a> -->
-      </div>
-    </section>
-
-    <!-- Section -->
-    <section class="WhatWeDo">
-      <div class="WhatWeDo-header">
-        <p class="Typography4 WhatWeDo-contentSubTitle">What We Do —</p>
-        <a href="/services" class="HomeWhy-redirectBtn Typography1"
-          >Read More<span class="HomeWhy-redirectBtnIcon"></span
-        ></a>
-      </div>
-      <p class="Typography6 WhatWeDo-contentTitle">
-        We partner with brands at every stage of their regional expansion
-      </p>
-      <div class="WhatWeDo-cardsHolder">
-        <div class="WhatWeDo-card">
-          <span class="WhatWeDo-icon headphone"></span>
-          <p class="Typography5">Market Research</p>
-          <p>
-            We conduct in-depth market research, competitive analysis, and
-            feasibility studies to help clients make data-driven expansion
-            decisions.
-          </p>
         </div>
+      </section>
 
-        <div class="WhatWeDo-card">
-          <span class="WhatWeDo-icon settings"></span>
-          <p class="Typography5">Real Estate Advisory</p>
-          <p>
-            We identify and evaluate cities, micro-markets, and sites that align
-            with brand strategy, customer behavior, and long-term growth
-            objectives.
-          </p>
+      <!-- Section -->
+      <section class="WhatWeDo">
+        <div class="WhatWeDo-header">
+          <p class="Typography4 WhatWeDo-contentSubTitle">What We Do —</p>
+          <a href="/services" class="HomeWhy-redirectBtn Typography1"
+            >Read More<span class="HomeWhy-redirectBtnIcon"></span
+          ></a>
         </div>
+        <p class="Typography6 WhatWeDo-contentTitle">
+          We partner with brands at every stage of their regional expansion
+        </p>
+        <div class="WhatWeDo-cardsHolder">
+          <div class="WhatWeDo-card">
+            <span class="WhatWeDo-icon headphone"></span>
+            <p class="Typography5">Market Research</p>
+            <p>
+              We conduct in-depth market research, competitive analysis, and
+              feasibility studies to help clients make data-driven expansion
+              decisions.
+            </p>
+          </div>
 
-        <div class="WhatWeDo-card">
-          <span class="WhatWeDo-icon code"></span>
-          <p class="Typography5">Turnkey Design & Build</p>
-          <p>
-            As a single-point accountable partner, we deliver fully operational
-            spaces through efficient Engineering and Design disciplined with
-            Project Management and Governance.
-          </p>
+          <div class="WhatWeDo-card">
+            <span class="WhatWeDo-icon settings"></span>
+            <p class="Typography5">Real Estate Advisory</p>
+            <p>
+              We identify and evaluate cities, micro-markets, and sites that
+              align with brand strategy, customer behavior, and long-term growth
+              objectives.
+            </p>
+          </div>
+
+          <div class="WhatWeDo-card">
+            <span class="WhatWeDo-icon code"></span>
+            <p class="Typography5">Turnkey Design & Build</p>
+            <p>
+              As a single-point accountable partner, we deliver fully
+              operational spaces through efficient Engineering and Design
+              disciplined with Project Management and Governance.
+            </p>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Section -->
-    <section class="HomeProjects">
-      <div class="HomeProjects-headingWrapper">
-        <p class="Typography6 HomeProjects-headingTitle">Our Projects</p>
-        <a href="/projects/" class="Typography5 Insights-allArticle"
-          >See all projects <span class="Insights-allArticleBtns"></span
-        ></a>
-      </div>
-      <div class="HomeProjects-cardHolder">
-        <a
-          href="/projects/projects-by-type/?category=bfsi"
-          class="HomeProjects-card small"
-        >
-          <img src="/assets/web/home-projects-1.jpg" alt="BFSI" />
-          <div class="HomeProjects-cardOverlay">
-            <h3>Banking, Financial Services, and Insurance</h3>
-          </div>
-        </a>
+      <!-- Section -->
+      <section class="HomeProjects">
+        <div class="HomeProjects-headingWrapper">
+          <p class="Typography6 HomeProjects-headingTitle">Our Projects</p>
+          <a href="/projects/" class="Typography5 Insights-allArticle"
+            >See all projects <span class="Insights-allArticleBtns"></span
+          ></a>
+        </div>
+        <div class="HomeProjects-cardHolder">
+          <a
+            href="/projects/projects-by-type/?category=bfsi"
+            class="HomeProjects-card small"
+          >
+            <img
+              src="/assets/web/home-projects-1.jpg"
+              alt="BFSI"
+              loading="lazy"
+            />
+            <div class="HomeProjects-cardOverlay">
+              <h3>Banking, Financial Services, and Insurance</h3>
+            </div>
+          </a>
 
-        <a
-          href="/projects/projects-by-type/?category=food"
-          class="HomeProjects-card small"
-        >
-          <img src="/assets/web/home-projects-2.jpg" alt="F&B" />
-          <div class="HomeProjects-cardOverlay">
-            <h3>Food & Beverages</h3>
-          </div>
-        </a>
+          <a
+            href="/projects/projects-by-type/?category=food"
+            class="HomeProjects-card small"
+          >
+            <img
+              src="/assets/web/home-projects-2.jpg"
+              alt="F&B"
+              loading="lazy"
+            />
+            <div class="HomeProjects-cardOverlay">
+              <h3>Food & Beverages</h3>
+            </div>
+          </a>
 
-        <a
-          href="/projects/projects-by-type/?category=corporate"
-          class="HomeProjects-card tall"
-        >
-          <img src="/assets/web/home-projects-3.webp" alt="Corporate" />
-          <div class="HomeProjects-cardOverlay">
-            <h3>Corporate</h3>
-          </div>
-        </a>
+          <a
+            href="/projects/projects-by-type/?category=corporate"
+            class="HomeProjects-card tall"
+          >
+            <img
+              src="/assets/web/home-projects-3.webp"
+              alt="Corporate"
+              loading="lazy"
+            />
+            <div class="HomeProjects-cardOverlay">
+              <h3>Corporate</h3>
+            </div>
+          </a>
 
-        <a
-          href="/projects/projects-by-type/?category=hospitality"
-          class="HomeProjects-card wide"
-        >
-          <img src="/assets/web/home-projects-4.jpg" alt="Hospitality" />
-          <div class="HomeProjects-cardOverlay">
-            <h3>Hospitality</h3>
-          </div>
-        </a>
+          <a
+            href="/projects/projects-by-type/?category=hospitality"
+            class="HomeProjects-card wide"
+          >
+            <img
+              src="/assets/web/home-projects-4.jpg"
+              alt="Hospitality"
+              loading="lazy"
+            />
+            <div class="HomeProjects-cardOverlay">
+              <h3>Hospitality</h3>
+            </div>
+          </a>
 
-        <a
-          href="/projects/projects-by-type/?category=retail"
-          class="HomeProjects-card small"
-        >
-          <img src="/assets/web/home-projects-5.webp" alt="Retail" />
-          <div class="HomeProjects-cardOverlay">
-            <h3>Retail</h3>
-          </div>
-        </a>
+          <a
+            href="/projects/projects-by-type/?category=retail"
+            class="HomeProjects-card small"
+          >
+            <img
+              src="/assets/web/home-projects-5.webp"
+              alt="Retail"
+              loading="lazy"
+            />
+            <div class="HomeProjects-cardOverlay">
+              <h3>Retail</h3>
+            </div>
+          </a>
 
-        <a
-          href="/projects/projects-by-type/?category=industrial"
-          class="HomeProjects-card small"
-        >
-          <img src="/assets/web/home-projects-6.webp" alt="Industrial" />
-          <div class="HomeProjects-cardOverlay">
-            <h3>Industrial</h3>
-          </div>
-        </a>
+          <a
+            href="/projects/projects-by-type/?category=industrial"
+            class="HomeProjects-card small"
+          >
+            <img
+              src="/assets/web/home-projects-6.webp"
+              alt="Industrial"
+              loading="lazy"
+            />
+            <div class="HomeProjects-cardOverlay">
+              <h3>Industrial</h3>
+            </div>
+          </a>
 
-        <a
-          href="/projects/projects-by-type/?category=residential"
-          class="HomeProjects-card small"
-        >
-          <img src="/assets/web/home-projects-7.webp" alt="Residential" />
-          <div class="HomeProjects-cardOverlay">
-            <h3>Residential</h3>
-          </div>
-        </a>
-      </div>
-    </section>
+          <a
+            href="/projects/projects-by-type/?category=residential"
+            class="HomeProjects-card small"
+          >
+            <img
+              src="/assets/web/home-projects-7.webp"
+              alt="Residential"
+              loading="lazy"
+            />
+            <div class="HomeProjects-cardOverlay">
+              <h3>Residential</h3>
+            </div>
+          </a>
+        </div>
+      </section>
 
-    <!-- Section -->
-    <section class="Trust">
-      <p class="Typography6 Trust-headingTitle">They trust us.</p>
-      <div class="Trust-listContainer" id="trust-list-container"></div>
-    </section>
+      <!-- Section -->
+      <section class="Trust">
+        <p class="Typography6 Trust-headingTitle">They trust us.</p>
+        <div class="Trust-listContainer" id="trust-list-container"></div>
+      </section>
 
-    <!-- Section -->
-    <!-- <section class="ClientSpeaks">
+      <!-- Section -->
+      <!-- <section class="ClientSpeaks">
       <div class="ClientSpeaks-headingWrapper">
         <p class="Typography6 ClientSpeaks-headingTitle">Our Client Speaks</p>
       </div>
@@ -430,6 +469,7 @@
         });
       }
     </script> -->
+    </main>
 
     <!-- Footer -->
     <site-footer class="SiteFooter"></site-footer>
@@ -440,6 +480,8 @@
     <!-- Defer JS -->
     <script
       src="https://unpkg.com/embla-carousel@8.1.5/embla-carousel.umd.js"
+      integrity="sha384-K0wbs8siU14OiZBPn9om5fdRvsfaYYzb5Kra6ZE1pGJGcn9FshfTbC5JWdk33YHF"
+      crossorigin="anonymous"
       defer
     ></script>
     <script type="text/javascript" src="/js/main.js?v=0.0.1" defer></script>

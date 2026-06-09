@@ -36,7 +36,7 @@ class SiteFooter extends HTMLElement {
               We are a Strategic expansion and Turnkey delivery partner helping brands grow confidently into new regions
             </p>
             <div class="Footer-socialInfo">
-              <a class="Footer-socialInfoIcon" target="_blank" href="https://www.linkedin.com/company/pwp-gujarat/posts/?feedView=all" aria-label="Follow us on LinkedIn">
+              <a class="Footer-socialInfoIcon" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/company/pwp-gujarat/posts/?feedView=all" aria-label="Follow us on LinkedIn">
                 <img
                   src="/assets/web/linkedin.svg"
                   alt="LinkedIn"
@@ -48,15 +48,15 @@ class SiteFooter extends HTMLElement {
           </div>
           <div class="Footer-menu">
             <p class="Typography4 Footer-menuLink">Quick Links</p>
-            <a class="Typography5 Footer-menuLink" href="/about-us">About Us</a>
-            <a class="Typography5 Footer-menuLink" href="/insights">Insights</a>
+            <a class="Typography5 Footer-menuLink" href="/about-us/">About Us</a>
+            <a class="Typography5 Footer-menuLink" href="/insights/">Insights</a>
             <a class="Typography5 Footer-menuLink" href="/projects/">Projects</a>
             <a
               class="Typography5 Footer-menuLink"
               href="/projects/projects-by-type/?category=bfsi"
               >Projects by Category</a
             >
-            <a class="Typography5 Footer-menuLink" href="/services">Services</a>
+            <a class="Typography5 Footer-menuLink" href="/services/">Services</a>
           </div>
           <div class="Footer-address">
             <div class="Footer-addressGroup">
@@ -81,10 +81,10 @@ class SiteFooter extends HTMLElement {
         </div>
         <div class="Footer-extrasWrapper">
           <p class="Typography2 Footer-copyrightText">
-            Copyright © <span id="year"></span> - Projects With Precision
+            Copyright © ${new Date().getFullYear()} - Projects With Precision
           </p>
           <div class="Footer-policyWrapper">
-            <a class="Typography2 Footer-policy" target="_blank" href="https://www.linkedin.com/in/sagar-gupta27/">Sagar Gupta</a>
+            <a class="Typography2 Footer-policy" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/sagar-gupta27/">Sagar Gupta</a>
           </div>
         </div>
       </footer>
@@ -93,12 +93,3 @@ class SiteFooter extends HTMLElement {
 }
 
 customElements.define("site-footer", SiteFooter);
-
-// Copyright Year
-document.addEventListener("DOMContentLoaded", () => {
-  const yearEl = document.getElementById("year");
-
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
-  }
-});

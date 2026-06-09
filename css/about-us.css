@@ -26,7 +26,7 @@
 }
 
 .Mission-centerWrapper {
-  transform: translateY(-50%);
+  transform: translateY(calc(-50% + 4rem));
 }
 
 .Mission-contentWrappers {
@@ -197,6 +197,6 @@
 
 .Leadership-readMore {
   font-weight: 600;
-  color: #6b7f6d;
+  color: var(--color-green-3);
   text-decoration: underline;
 }

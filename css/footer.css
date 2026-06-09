@@ -78,7 +78,7 @@
   margin-left: 5rem;
 }
 
-.Footer-menu > *:not:first-child {
+.Footer-menu > *:not(:first-child) {
   cursor: pointer;
   text-decoration: underline;
 }
