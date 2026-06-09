@@ -10,10 +10,10 @@
 .Scale-contentWrapper {
   width: 100%;
   aspect-ratio: 1;
-  overflow: hidden;
 }
 
 .Scale-imageWrapper {
+  height: 100%;
   border-top-left-radius: 0.675rem;
   border-bottom-left-radius: 0.675rem;
 }
@@ -133,10 +133,14 @@
   line-height: 1.4;
 }
 
+.Insights-card img {
+  transform: scale(1);
+  transition: transform 0.5s ease;
+}
+
 /* Optional hover effect */
 .Insights-card:hover img {
   transform: scale(1.05);
-  transition: transform 0.5s ease;
 }
 
 /* HomeAboutUs */
@@ -152,7 +156,6 @@
 .HomeAboutUs-contentWrapper {
   width: 100%;
   aspect-ratio: 1;
-  overflow: hidden;
 }
 
 .HomeAboutUs-imageWrapper {
@@ -164,7 +167,7 @@
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1.5rem;
 }
 
@@ -212,7 +215,6 @@
 .HomeWhy-contentWrapper {
   width: 100%;
   aspect-ratio: 1;
-  overflow: hidden;
 }
 
 .HomeWhy-imageWrapper {
@@ -224,7 +226,7 @@
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1.5rem;
 }
 

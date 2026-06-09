@@ -134,11 +134,13 @@
         }
 
         insightsList.forEach((i) => {
+          const link = document.createElement("a");
           const card = document.createElement("div");
           const img = document.createElement("img");
           const overlay = document.createElement("div");
           const p = document.createElement("p");
 
+          link.href = `/insights/blog/?b=${i.title}`;
           card.classList.add("Insights-card");
           img.src = `/assets/blogs/${i.title}/${i.thumbnail}`;
           img.alt = i.title;
@@ -150,8 +152,9 @@
           card.appendChild(img);
           overlay.appendChild(p);
           card.appendChild(overlay);
+          link.appendChild(card);
 
-          insightsHolder.appendChild(card);
+          insightsHolder.appendChild(link);
         });
       };
 
@@ -275,54 +278,75 @@
         ></a>
       </div>
       <div class="HomeProjects-cardHolder">
-        <div class="HomeProjects-card small">
+        <a
+          href="/projects/projects-by-type/?category=bfsi"
+          class="HomeProjects-card small"
+        >
           <img src="/assets/web/home-projects-1.jpg" alt="BFSI" />
           <div class="HomeProjects-cardOverlay">
             <h3>Banking, Financial Services, and Insurance</h3>
           </div>
-        </div>
+        </a>
 
-        <div class="HomeProjects-card small">
+        <a
+          href="/projects/projects-by-type/?category=food"
+          class="HomeProjects-card small"
+        >
           <img src="/assets/web/home-projects-2.jpg" alt="F&B" />
           <div class="HomeProjects-cardOverlay">
             <h3>Food & Beverages</h3>
           </div>
-        </div>
+        </a>
 
-        <div class="HomeProjects-card tall">
+        <a
+          href="/projects/projects-by-type/?category=corporate"
+          class="HomeProjects-card tall"
+        >
           <img src="/assets/web/home-projects-3.webp" alt="Corporate" />
           <div class="HomeProjects-cardOverlay">
             <h3>Corporate</h3>
           </div>
-        </div>
+        </a>
 
-        <div class="HomeProjects-card wide">
+        <a
+          href="/projects/projects-by-type/?category=hospitality"
+          class="HomeProjects-card wide"
+        >
           <img src="/assets/web/home-projects-4.jpg" alt="Hospitality" />
           <div class="HomeProjects-cardOverlay">
             <h3>Hospitality</h3>
           </div>
-        </div>
+        </a>
 
-        <div class="HomeProjects-card small">
+        <a
+          href="/projects/projects-by-type/?category=retail"
+          class="HomeProjects-card small"
+        >
           <img src="/assets/web/home-projects-5.webp" alt="Retail" />
           <div class="HomeProjects-cardOverlay">
             <h3>Retail</h3>
           </div>
-        </div>
+        </a>
 
-        <div class="HomeProjects-card small">
+        <a
+          href="/projects/projects-by-type/?category=industrial"
+          class="HomeProjects-card small"
+        >
           <img src="/assets/web/home-projects-6.webp" alt="Industrial" />
           <div class="HomeProjects-cardOverlay">
             <h3>Industrial</h3>
           </div>
-        </div>
+        </a>
 
-        <div class="HomeProjects-card small">
+        <a
+          href="/projects/projects-by-type/?category=residential"
+          class="HomeProjects-card small"
+        >
           <img src="/assets/web/home-projects-7.webp" alt="Residential" />
           <div class="HomeProjects-cardOverlay">
             <h3>Residential</h3>
           </div>
-        </div>
+        </a>
       </div>
     </section>
 
