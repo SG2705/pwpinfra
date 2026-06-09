@@ -242,6 +242,23 @@
     margin-inline: 2rem;
   }
 
+  /* Contact Us */
+  .ContactHero {
+    padding-inline: 2rem;
+  }
+
+  .ContactDetails {
+    padding-inline: 2rem;
+  }
+
+  .ContactCTA {
+    padding-inline: 2rem;
+  }
+
+  .ContactCTA-wrapper {
+    padding: 3rem 2rem;
+  }
+
   /* Footer */
   .Footer {
     padding: 2rem 2rem 0;
@@ -538,6 +555,35 @@
     font-size: 2rem;
     line-height: 2.5rem;
     padding-inline: 1rem;
+  }
+
+  /* Contact Us */
+  .ContactHero {
+    padding-inline: 1rem;
+    margin-block: 2rem 1rem;
+  }
+
+  .ContactDetails {
+    padding-inline: 1rem;
+    margin-block: 2rem;
+  }
+
+  .ContactDetails-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .ContactCTA {
+    padding-inline: 1rem;
+    margin-block: 2rem 4rem;
+  }
+
+  .ContactCTA-wrapper {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .ContactCTA-socialLinks {
+    flex-direction: column;
+    align-items: center;
   }
 
   /* Footer */

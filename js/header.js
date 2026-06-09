@@ -1,6 +1,6 @@
 class SiteHeader extends HTMLElement {
   static get observedAttributes() {
-    return ["logo", "brand", "theme", "gradient"];
+    return ["logo", "brand", "theme", "gradient", "show-contact"];
   }
 
   constructor() {
@@ -19,6 +19,7 @@ class SiteHeader extends HTMLElement {
     const logo = this.getAttribute("logo") || "/assets/logo.svg";
     const brand = this.getAttribute("brand") || "PWP Infra";
     const theme = this.getAttribute("theme") || "light";
+    const showContact = this.getAttribute("show-contact") !== "false";
 
     this.innerHTML = `
      <a class="Header-skipToContent" href="#main-content">Skip to content</a>
@@ -46,11 +47,15 @@ class SiteHeader extends HTMLElement {
             <a href="/insights">Insights</a>
           </li>
         </ul>
-        <a
-          href="#contact-us"
+        ${
+          showContact
+            ? `<a
+          href="/contact-us"
           class="Header-navListItem Header-navListItem-contactUsBtn Typography1"
           >Contact Us</a
-        >
+        >`
+            : ""
+        }
       </nav>
     </header>
     `;

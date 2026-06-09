@@ -1,0 +1,136 @@
+/* Contact Hero */
+.ContactHero {
+  width: 100%;
+  padding-inline: 4.5rem;
+  margin-block: 4rem 2rem;
+  text-align: center;
+}
+
+.ContactHero-title {
+  color: var(--color-green-3);
+}
+
+.ContactHero-subtitle {
+  color: var(--color-gray-1);
+  margin-top: 1rem;
+  max-width: 40rem;
+  margin-inline: auto;
+}
+
+/* Contact Details */
+.ContactDetails {
+  width: 100%;
+  padding-inline: 4.5rem;
+  margin-block: 4rem;
+}
+
+.ContactDetails-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 2rem;
+}
+
+.ContactDetails-card {
+  background-color: var(--color-green-2);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.ContactDetails-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-block;
+  background-color: var(--color-green-3);
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+}
+
+.ContactDetails-icon.location {
+  -webkit-mask-image: url("/assets/icons/address.svg");
+  mask-image: url("/assets/icons/address.svg");
+}
+
+.ContactDetails-icon.contact {
+  -webkit-mask-image: url("/assets/icons/contact.svg");
+  mask-image: url("/assets/icons/contact.svg");
+}
+
+.ContactDetails-icon.email {
+  -webkit-mask-image: url("/assets/icons/contact.svg");
+  mask-image: url("/assets/icons/contact.svg");
+}
+
+.ContactDetails-cardTitle {
+  color: var(--color-green-3);
+}
+
+.ContactDetails-cardText {
+  color: var(--color-green-3);
+  line-height: 180%;
+}
+
+.ContactDetails-cardText a {
+  color: var(--color-green-3);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.ContactDetails-cardText a:hover {
+  color: var(--color-green-6);
+}
+
+/* Contact CTA */
+.ContactCTA {
+  width: 100%;
+  padding-inline: 4.5rem;
+  margin-block: 2rem 6rem;
+}
+
+.ContactCTA-wrapper {
+  background-color: var(--color-green-3);
+  border-radius: var(--radius-xl);
+  padding: 4rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.ContactCTA-title {
+  color: var(--color-white-1);
+}
+
+.ContactCTA-description {
+  color: var(--color-green-1);
+  max-width: 36rem;
+}
+
+.ContactCTA-socialLinks {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.ContactCTA-socialLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-white-1);
+  color: var(--color-green-3);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-pill);
+  transition: background-color 0.2s ease;
+}
+
+.ContactCTA-socialLink:hover {
+  background-color: var(--color-green-5);
+}
