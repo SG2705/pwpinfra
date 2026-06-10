@@ -1,0 +1,74 @@
+version: "3.8"
+
+services:
+  gateway:
+    build: ./gateway
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=development
+      - AUTH_SERVICE_URL=http://auth-ms:4001
+      - AGENT_SERVICE_URL=http://agent-ms:4002
+    depends_on:
+      auth-ms:
+        condition: service_started
+      agent-ms:
+        condition: service_started
+    restart: unless-stopped
+    networks:
+      - microservices
+
+  auth-ms:
+    build: ./auth-ms
+    # No "ports" — only reachable from within the Docker network
+    expose:
+      - "4001"
+    environment:
+      - PORT=4001
+      - NODE_ENV=development
+      - MONGO_URI=mongodb://mongo:27017/auth_db
+      - JWT_SECRET=${JWT_SECRET:-dev_secret_change_me}
+      - JWT_EXPIRES_IN=7d
+      - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET:-dev_refresh_secret_change_me}
+      - JWT_REFRESH_EXPIRES_IN=30d
+    depends_on:
+      mongo:
+        condition: service_started
+    restart: unless-stopped
+    networks:
+      - microservices
+
+  agent-ms:
+    build: ./agent-ms
+    # No "ports" — only reachable from within the Docker network
+    expose:
+      - "4002"
+    environment:
+      - PORT=4002
+      - NODE_ENV=development
+      - MONGO_URI=mongodb://mongo:27017/agent_db
+    depends_on:
+      mongo:
+        condition: service_started
+    restart: unless-stopped
+    networks:
+      - microservices
+
+  mongo:
+    image: mongo:7
+    # No "ports" — only reachable internally
+    expose:
+      - "27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: unless-stopped
+    networks:
+      - microservices
+
+volumes:
+  mongo_data:
+
+networks:
+  microservices:
+    driver: bridge

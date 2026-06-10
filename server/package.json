@@ -1,0 +1,40 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Microservices monorepo",
+  "private": true,
+  "scripts": {
+    "prepare": "husky",
+    "install:all": "cd gateway && npm install && cd ../auth-ms && npm install && cd ../agent-ms && npm install",
+    "dev:all": "concurrently -n gateway,auth,agent -c blue,green,yellow \"cd gateway && npm run dev\" \"cd auth-ms && npm run dev\" \"cd agent-ms && npm run dev\"",
+    "clean": "rm -rf gateway/node_modules auth-ms/node_modules agent-ms/node_modules node_modules",
+    "lint:gateway": "cd gateway && npm run lint:fix",
+    "lint:auth": "cd auth-ms && npm run lint:fix",
+    "lint:agent": "cd agent-ms && npm run lint:fix",
+    "format:gateway": "cd gateway && npm run format",
+    "format:auth": "cd auth-ms && npm run format",
+    "format:agent": "cd agent-ms && npm run format",
+    "lint:all": "npm run lint:gateway && npm run lint:auth && npm run lint:agent",
+    "format:all": "npm run format:gateway && npm run format:auth && npm run format:agent",
+    "run-dev-clean": "npm run clean && npm run install:all && npm run dev:all"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10"
+  },
+  "lint-staged": {
+    "gateway/src/**/*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "auth-ms/src/**/*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "agent-ms/src/**/*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  }
+}

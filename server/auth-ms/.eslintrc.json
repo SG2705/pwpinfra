@@ -1,0 +1,81 @@
+{
+  "extends": ["airbnb-base", "plugin:jsdoc/recommended", "prettier"],
+  "plugins": ["import", "simple-import-sort", "jsdoc"],
+  "env": {
+    "node": true,
+    "es2021": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-console": "off",
+    "no-underscore-dangle": ["error", { "allow": ["_id", "_next"] }],
+    "consistent-return": "off",
+    "class-methods-use-this": "off",
+    "max-len": [
+      "warn",
+      {
+        "code": 80,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreComments": false
+      }
+    ],
+
+    "import/no-unresolved": [0, { "caseSensitive": false }],
+    "import/extensions": ["error", "ignorePackages", { "js": "always" }],
+    "import/prefer-default-export": "off",
+    "import/first": "error",
+    "import/no-cycle": "off",
+    "import/no-extraneous-dependencies": [
+      "warn",
+      {
+        "devDependencies": [
+          "**/__tests__/**/*.[jt]s?(x)",
+          "**/?(*.)+(spec|test).[jt]s?(x)",
+          "jest.setup.js",
+          "**/*.config.{ts,tsx,js,jsx}",
+          "**/*.config.*.{ts,tsx,js,jsx}"
+        ]
+      }
+    ],
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          ["^react", "^@?\\w"],
+          ["^(@|components)(/.*|$)"],
+          ["^\\u0000"],
+          ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+          ["^.+\\.?(css)$"]
+        ]
+      }
+    ],
+    "simple-import-sort/exports": "error",
+
+    "jsdoc/require-jsdoc": [
+      "warn",
+      {
+        "require": {
+          "FunctionDeclaration": true,
+          "MethodDefinition": true,
+          "ClassDeclaration": true,
+          "ArrowFunctionExpression": false,
+          "FunctionExpression": false
+        }
+      }
+    ],
+    "jsdoc/require-description": "warn",
+    "jsdoc/require-param": "warn",
+    "jsdoc/require-param-type": "off",
+    "jsdoc/require-returns": "warn",
+    "jsdoc/require-returns-type": "off"
+  }
+}
