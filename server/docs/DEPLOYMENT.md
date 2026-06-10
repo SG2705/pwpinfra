@@ -2,11 +2,11 @@
 
 ## Environments
 
-| Environment | Purpose                   | Infrastructure               |
-| ----------- | ------------------------- | ---------------------------- |
-| Local       | Development and testing   | Docker Compose               |
-| Staging     | Pre-production validation | Docker Compose / single VM   |
-| Production  | Live traffic              | Kubernetes / ECS / Cloud VMs |
+| Environment | Purpose        | Infrastructure |
+| ----------- | -------------- | -------------- |
+| Local       | Development    | Docker Compose |
+| Staging     | Pre-production | Single VM      |
+| Production  | Live traffic   | K8s / ECS      |
 
 ## Local Development
 
@@ -23,7 +23,8 @@ cd server
 docker compose up --build
 ```
 
-This starts all services + MongoDB in isolated containers. Gateway is accessible at `http://localhost:3000`.
+Only the gateway (:3000) is exposed. AuthMS, AgentMS,
+and MongoDB are internal-only.
 
 ### Option 2: Manual
 
@@ -41,115 +42,105 @@ cd server/agent-ms && npm install && npm run dev
 cd server/gateway && npm install && npm run dev
 ```
 
+### Option 3: From Root
+
+```bash
+cd server
+npm install
+npm run install:all
+npm run dev:all
+```
+
+## Scripts (server/package.json)
+
+| Command               | Description                     |
+| --------------------- | ------------------------------- |
+| `npm run install:all` | Install deps in all services    |
+| `npm run dev:all`     | Start all services concurrently |
+| `npm run clean`       | Remove all node_modules         |
+| `npm run lint:all`    | Lint all services               |
+| `npm run format:all`  | Format all services             |
+
 ## Production Deployment
 
 ### Infrastructure Layout
 
 ```
-┌─────────────────────────────────────────────────────┐
-│                    PUBLIC SUBNET                      │
-│                                                     │
-│   ┌───────────┐     ┌───────────────────────────┐  │
-│   │    DNS     │────▶│   Application Load Balancer│  │
-│   │ (Route 53) │     │   - SSL/TLS termination   │  │
-│   └───────────┘     │   - Health checks          │  │
-│                      └──────────┬────────────────┘  │
-└─────────────────────────────────┼───────────────────┘
-                                  │
-┌─────────────────────────────────┼───────────────────┐
-│                    PRIVATE SUBNET                     │
-│                                  │                    │
-│   ┌──────────────────────────────┼─────────────┐    │
-│   │         Gateway Cluster (2+ instances)      │    │
-│   │         Port 3000                           │    │
-│   └──────────┬─────────────────────┬───────────┘    │
-│              │                     │                  │
-│   ┌──────────▼──────────┐  ┌──────▼──────────────┐  │
-│   │  AuthMS Cluster     │  │  AgentMS Cluster     │  │
-│   │  (2+ instances)     │  │  (2+ instances)      │  │
-│   │  Port 4001          │  │  Port 4002           │  │
-│   └──────────┬──────────┘  └──────┬──────────────┘  │
-│              │                     │                  │
-│   ┌──────────▼─────────────────────▼──────────────┐  │
-│   │          MongoDB Replica Set                   │  │
-│   │          (Primary + 2 Secondaries)             │  │
-│   └───────────────────────────────────────────────┘  │
-│                                                      │
-└──────────────────────────────────────────────────────┘
+┌──────────── PUBLIC SUBNET ──────────────────┐
+│  DNS → ALB (SSL) → Gateway Cluster          │
+└───────────────────────┬─────────────────────┘
+                        │
+┌───────────────────────┼─────────────────────┐
+│          PRIVATE SUBNET                      │
+│   AuthMS Cluster   AgentMS Cluster           │
+│   MongoDB Replica Set                        │
+└──────────────────────────────────────────────┘
 ```
 
 ### Container Registry
 
-Build and push images to your registry (ECR, GCR, Docker Hub):
-
 ```bash
-# Build
-docker build -t your-registry/gateway:1.0.0 ./gateway
-docker build -t your-registry/auth-ms:1.0.0 ./auth-ms
-docker build -t your-registry/agent-ms:1.0.0 ./agent-ms
-
-# Push
-docker push your-registry/gateway:1.0.0
-docker push your-registry/auth-ms:1.0.0
-docker push your-registry/agent-ms:1.0.0
+docker build -t registry/gateway:1.0.0 ./gateway
+docker build -t registry/auth-ms:1.0.0 ./auth-ms
+docker build -t registry/agent-ms:1.0.0 ./agent-ms
 ```
+
+### Docker Security
+
+All Dockerfiles use:
+
+- Multi-stage builds (smaller images)
+- `apk upgrade` (patch OS vulnerabilities)
+- Non-root user (`appuser`)
+- `.dockerignore` (no .env or node_modules in image)
 
 ### Environment Variables (Production)
 
-**Never commit production secrets.** Use a secrets manager (AWS Secrets Manager, Vault, K8s Secrets).
+Use a secrets manager (AWS Secrets Manager, Vault).
 
 ```bash
-# Required for AuthMS in production
 JWT_SECRET=<strong-random-256-bit-key>
-JWT_REFRESH_SECRET=<different-strong-random-256-bit-key>
-MONGO_URI=mongodb+srv://user:pass@cluster.mongodb.net/auth_db
+JWT_REFRESH_SECRET=<different-strong-key>
+MONGO_URI=mongodb+srv://user:pass@cluster/auth_db
 NODE_ENV=production
-
-# Required for Gateway in production
-AUTH_SERVICE_URL=http://auth-ms-service:4001
-AGENT_SERVICE_URL=http://agent-ms-service:4002
-RATE_LIMIT_MAX_REQUESTS=1000
 ```
+
+AuthMS will **refuse to start** if secrets are missing
+in production mode.
 
 ### Health Checks
 
-All services expose a `/health` endpoint. Configure your load balancer / orchestrator to poll it:
+| Service | URL       | Response              |
+| ------- | --------- | --------------------- |
+| Gateway | `/health` | `{ "success": true }` |
+| AuthMS  | `/health` | `{ "success": true }` |
+| AgentMS | `/health` | `{ "success": true }` |
 
-| Service | Health URL                    | Expected Response     |
-| ------- | ----------------------------- | --------------------- |
-| Gateway | `http://gateway:3000/health`  | `{ "success": true }` |
-| AuthMS  | `http://auth-ms:4001/health`  | `{ "success": true }` |
-| AgentMS | `http://agent-ms:4002/health` | `{ "success": true }` |
+### Scaling
 
-### Scaling Guidelines
-
-| Service | Scale When                         | Suggested Min      |
-| ------- | ---------------------------------- | ------------------ |
-| Gateway | CPU > 70% or latency > 200ms       | 2 instances        |
-| AuthMS  | Login traffic spikes               | 2 instances        |
-| AgentMS | Agent operations spike             | 2 instances        |
-| MongoDB | Read replicas for read-heavy loads | 3-node replica set |
+| Service | Scale When          | Min Instances |
+| ------- | ------------------- | ------------- |
+| Gateway | CPU > 70%           | 2             |
+| AuthMS  | Auth traffic spikes | 2             |
+| AgentMS | Agent ops spike     | 2             |
+| MongoDB | Read-heavy loads    | 3-node RS     |
 
 ## CI/CD Pipeline (Suggested)
 
 ```
-┌─────────┐    ┌──────────┐    ┌──────────┐    ┌──────────┐
-│  Push   │───▶│  Build   │───▶│   Test   │───▶│  Deploy  │
-│  to Git │    │  Images  │    │  (unit + │    │  (staging│
-│         │    │          │    │  integr) │    │  → prod) │
-└─────────┘    └──────────┘    └──────────┘    └──────────┘
+Push → Build → Test → Deploy (staging → prod)
 ```
 
 1. **On push:** Lint + unit tests
-2. **On merge to main:** Build Docker images, run integration tests
-3. **On tag/release:** Deploy to staging, run smoke tests, promote to production
+2. **On merge to main:** Build images, integration tests
+3. **On tag:** Deploy staging → smoke test → production
 
-## Monitoring & Observability (Recommended)
+## Monitoring (Recommended)
 
 | Concern  | Tool                    |
 | -------- | ----------------------- |
 | Metrics  | Prometheus + Grafana    |
-| Logging  | ELK Stack or CloudWatch |
+| Logging  | ELK Stack / CloudWatch  |
 | Tracing  | OpenTelemetry + Jaeger  |
 | Alerting | PagerDuty / Opsgenie    |
 | Uptime   | Better Uptime / Pingdom |

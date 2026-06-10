@@ -2,9 +2,10 @@
 
 ## Purpose
 
-AuthMS is responsible for **user identity management**. It handles registration, login, token issuance, token verification, and token refresh. It is the single source of truth for "who is this user?"
-
-Other services never implement their own auth logic. They trust the gateway, which trusts AuthMS.
+AuthMS is responsible for **user identity management**.
+It handles registration, login, token issuance, token
+verification, and token refresh. It is the single source
+of truth for "who is this user?"
 
 ## Port
 
@@ -12,24 +13,24 @@ Other services never implement their own auth logic. They trust the gateway, whi
 
 ## Responsibilities
 
-| Responsibility     | Description                                    |
-| ------------------ | ---------------------------------------------- |
-| User Registration  | Create new accounts with hashed passwords      |
-| Login              | Validate credentials, issue JWT tokens         |
-| Token Verification | Validate tokens (called internally by gateway) |
-| Token Refresh      | Issue new access tokens using refresh tokens   |
-| User Profile       | Return authenticated user's profile data       |
+| Responsibility     | Description                            |
+| ------------------ | -------------------------------------- |
+| User Registration  | Create accounts with hashed passwords  |
+| Login              | Validate credentials, issue JWT tokens |
+| Token Verification | Validate tokens (called by gateway)    |
+| Token Refresh      | Issue new access tokens                |
+| User Profile       | Return authenticated user's data       |
 
 ## API Endpoints
 
-| Method | Path                 | Access                  | Description              |
-| ------ | -------------------- | ----------------------- | ------------------------ |
-| POST   | `/api/auth/register` | Public                  | Register a new user      |
-| POST   | `/api/auth/login`    | Public                  | Login and receive tokens |
-| POST   | `/api/auth/verify`   | Internal (gateway only) | Verify a JWT token       |
-| POST   | `/api/auth/refresh`  | Public                  | Get new access token     |
-| GET    | `/api/auth/me`       | Protected               | Get current user profile |
-| GET    | `/health`            | Public                  | Service health check     |
+| Method | Path                 | Access    | Description   |
+| ------ | -------------------- | --------- | ------------- |
+| POST   | `/api/auth/register` | Public    | Register user |
+| POST   | `/api/auth/login`    | Public    | Login         |
+| POST   | `/api/auth/verify`   | Internal  | Verify token  |
+| POST   | `/api/auth/refresh`  | Public    | Refresh token |
+| GET    | `/api/auth/me`       | Protected | User profile  |
+| GET    | `/health`            | Public    | Health check  |
 
 ## Request/Response Examples
 
@@ -91,9 +92,7 @@ Other services never implement their own auth logic. They trust the gateway, whi
 ```json
 // POST /api/auth/verify
 // Request
-{
-  "token": "eyJhbGciOiJIUzI1NiIs..."
-}
+{ "token": "eyJhbGciOiJIUzI1NiIs..." }
 
 // Response (200)
 {
@@ -106,79 +105,78 @@ Other services never implement their own auth logic. They trust the gateway, whi
 
 ## Data Model — User
 
-| Field       | Type     | Description                              |
-| ----------- | -------- | ---------------------------------------- |
-| `_id`       | ObjectId | Auto-generated unique ID                 |
-| `name`      | String   | User's full name (max 100 chars)         |
-| `email`     | String   | Unique, lowercase, trimmed               |
-| `password`  | String   | bcrypt hashed (12 rounds), select: false |
-| `roles`     | [String] | Array of roles (`user`, `admin`)         |
-| `isActive`  | Boolean  | Soft deactivation flag                   |
-| `createdAt` | Date     | Auto-generated timestamp                 |
-| `updatedAt` | Date     | Auto-generated timestamp                 |
+| Field       | Type     | Description                  |
+| ----------- | -------- | ---------------------------- |
+| `_id`       | ObjectId | Auto-generated ID            |
+| `name`      | String   | Full name (max 100 chars)    |
+| `email`     | String   | Unique, lowercase, trimmed   |
+| `password`  | String   | bcrypt hashed, select: false |
+| `roles`     | [String] | `user` or `admin`            |
+| `isActive`  | Boolean  | Soft deactivation flag       |
+| `createdAt` | Date     | Auto-generated               |
+| `updatedAt` | Date     | Auto-generated               |
 
 ## Security Measures
 
 - Passwords hashed with **bcrypt** (12 salt rounds)
-- Password field excluded from queries by default (`select: false`)
-- JWT tokens signed with separate secrets for access and refresh
+- Password field excluded from queries by default
+- JWT signed with separate access and refresh secrets
 - Input validation on all endpoints (express-validator)
 - Request body size limited to 10KB
 - Deactivated accounts cannot login
+- Production startup blocked without proper secrets
 
 ## Token Strategy
 
-| Token         | Secret               | Expiry  | Purpose                                |
-| ------------- | -------------------- | ------- | -------------------------------------- |
-| Access Token  | `JWT_SECRET`         | 7 days  | Authorize API requests                 |
-| Refresh Token | `JWT_REFRESH_SECRET` | 30 days | Get new access tokens without re-login |
+| Token   | Secret               | Expiry | Purpose            |
+| ------- | -------------------- | ------ | ------------------ |
+| Access  | `JWT_SECRET`         | 7d     | Authorize requests |
+| Refresh | `JWT_REFRESH_SECRET` | 30d    | Get new tokens     |
 
 ## Directory Structure
 
 ```
 auth-ms/
 ├── Dockerfile
-├── package.json
+├── .dockerignore
+├── .eslintrc.json
+├── .prettierrc
 ├── .env
+├── package.json
 └── src/
-    ├── index.js
-    ├── app.js
+    ├── index.js              ← Entry point
+    ├── app.js                ← Express app setup
     ├── config/
-    │   ├── env.js
-    │   └── db.js
+    │   ├── env.js            ← Environment variables
+    │   └── db.js             ← MongoDB connection
     ├── controllers/
-    │   └── auth.controller.js
+    │   └── auth.js           ← Auth logic + HTTP layer
     ├── models/
-    │   └── user.model.js
+    │   └── user.js           ← Mongoose User schema
     ├── routes/
-    │   ├── auth.routes.js
-    │   └── health.routes.js
-    ├── services/
-    │   └── auth.service.js
+    │   ├── auth.js           ← Auth route definitions
+    │   └── health.js         ← Health check
     ├── middleware/
-    │   ├── errorHandler.js
-    │   └── validate.js
+    │   ├── errorHandler.js   ← Global error handler
+    │   └── validate.js       ← Validation middleware
     └── validators/
-        └── auth.validator.js
+        ├── register.js       ← Register input rules
+        └── login.js          ← Login input rules
 ```
 
 ## Database
 
 - **Database name:** `auth_db`
-- **Collections:** `users`
+- **Collection:** `users`
 - **Indexes:** `email` (unique)
 
 ## Future Enhancements
 
-- **Email verification** — Send confirmation email on registration, activate account on verification
-- **Password reset** — Forgot password flow with time-limited reset tokens sent via email
-- **OAuth2 / Social login** — Google, GitHub, Microsoft login integration
-- **Multi-factor authentication (MFA)** — TOTP-based 2FA with authenticator apps
-- **Session management** — Track active sessions, allow users to revoke specific sessions
-- **Role-based access control (RBAC)** — Granular permissions beyond simple roles
-- **Account lockout** — Lock account after N failed login attempts
-- **Token blacklisting** — Redis-backed blacklist for revoked tokens before expiry
-- **Audit logging** — Track login attempts, password changes, and suspicious activity
-- **Rate limiting on auth endpoints** — Separate stricter limits on login/register to prevent brute force
-- **Password strength enforcement** — Configurable password policies (uppercase, numbers, special chars)
-- **User management API** — Admin endpoints for listing, deactivating, and managing users
+- Email verification on registration
+- Password reset flow with time-limited tokens
+- OAuth2 / Social login (Google, GitHub)
+- Multi-factor authentication (TOTP-based 2FA)
+- Session management and token blacklisting
+- Account lockout after failed attempts
+- Audit logging for login attempts
+- Admin user management endpoints

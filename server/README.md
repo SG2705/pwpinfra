@@ -2,70 +2,80 @@
 
 ## Documentation
 
-Detailed documentation lives in the `docs/` folder:
-
-- [Architecture Overview](docs/ARCHITECTURE.md) — System design, principles, and network model
-- [API Gateway](docs/GATEWAY.md) — Routing, auth verification, rate limiting
-- [AuthMS](docs/AUTH-MS.md) — Authentication, tokens, user management
-- [AgentMS](docs/AGENT-MS.md) — Agent lifecycle and business logic
-- [Deployment Guide](docs/DEPLOYMENT.md) — Local, staging, and production setup
+- [Architecture Overview](docs/ARCHITECTURE.md)
+- [API Gateway](docs/GATEWAY.md)
+- [AuthMS](docs/AUTH-MS.md)
+- [AgentMS](docs/AGENT-MS.md)
+- [Deployment Guide](docs/DEPLOYMENT.md)
 
 ## Architecture
 
 ```
-Client → Load Balancer → Gateway (:3000) → AuthMS (:4001) / AgentMS (:4002)
+Client → Load Balancer → Gateway (:3000)
+                            ├── /api/auth/*   → AuthMS (:4001)
+                            └── /api/agents/* → AgentMS (:4002)
 ```
 
 ## Services
 
-| Service | Port | Description                                   |
-| ------- | ---- | --------------------------------------------- |
-| Gateway | 3000 | API routing, auth verification, rate limiting |
-| AuthMS  | 4001 | User registration, login, token management    |
-| AgentMS | 4002 | Agent CRUD operations (protected)             |
+| Service | Port | Description                               |
+| ------- | ---- | ----------------------------------------- |
+| Gateway | 3000 | Routing, auth verification, rate limiting |
+| AuthMS  | 4001 | Registration, login, token management     |
+| AgentMS | 4002 | Agent CRUD (protected)                    |
 
 ## Quick Start
 
-### With Docker (recommended)
+### Docker (recommended)
 
 ```bash
 cd server
 docker compose up --build
 ```
 
-### Without Docker
-
-Requires MongoDB running locally on port 27017.
+### Manual
 
 ```bash
-# Terminal 1 — AuthMS
-cd auth-ms && npm install && npm run dev
-
-# Terminal 2 — AgentMS
-cd agent-ms && npm install && npm run dev
-
-# Terminal 3 — Gateway
-cd gateway && npm install && npm run dev
+cd server
+npm install
+npm run install:all
+npm run dev:all
 ```
+
+## Scripts
+
+| Command               | Description                      |
+| --------------------- | -------------------------------- |
+| `npm run install:all` | Install all service dependencies |
+| `npm run dev:all`     | Start all services concurrently  |
+| `npm run clean`       | Remove all node_modules          |
+| `npm run lint:all`    | Lint fix all services            |
+| `npm run format:all`  | Prettier format all services     |
 
 ## API Endpoints
 
 ### Auth (public)
 
-- `POST /api/auth/register` — Register a new user
-- `POST /api/auth/login` — Login and get tokens
-- `POST /api/auth/refresh` — Refresh access token
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+- `POST /api/auth/refresh`
 
 ### Agents (protected — requires Bearer token)
 
-- `POST /api/agents` — Create an agent
-- `GET /api/agents` — List user's agents
-- `GET /api/agents/:id` — Get agent by ID
-- `PUT /api/agents/:id` — Update an agent
-- `DELETE /api/agents/:id` — Archive an agent
+- `POST /api/agents`
+- `GET /api/agents`
+- `GET /api/agents/:id`
+- `PUT /api/agents/:id`
+- `DELETE /api/agents/:id`
 
 ### Health
 
-- `GET /health` — Gateway health
-- `GET http://localhost:4001/health` — AuthMS health
-- `GET http://localhost:4002/health` — AgentMS health
+- `GET /health` (on each service)
+
+## Tech Stack
+
+- Node.js 20 + Express + ES Modules
+- MongoDB + Mongoose
+- JWT (access + refresh tokens)
+- Docker + Docker Compose
+- ESLint (Airbnb) + Prettier + Husky
